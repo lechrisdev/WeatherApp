@@ -1,0 +1,43 @@
+# Xcode
+.DS_Store
+*/build/*
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcworkspace
+*.xcuserstate
+project.xcworkspace/
+
+# Swift Package Manager
+.build/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# SwiftLint
+/.swiftlint.yml
+/.swiftlint-cache
+
+# SwiftGen
+/SwiftGen/
+
+# Core Data
+*.sqlite
+*.xcdatamodeld/*.sqlite-shm
+*.xcdatamodeld/*.sqlite-wal
+
+# Swinject
+*/SwinjectStoryboard.generated.swift
+
+# Miscellaneous
+*.log
+*.tmp
+*.bak
+*.swp
