@@ -6,5 +6,7 @@
   
 */
 
-"TITLE" = "Title";
-"DESP" = "Description";
+"DETAILS.TIME" = "TIME";
+"DETAILS.UV" = "UV";
+"DETAILS.RAIN" = "% RAIN";
+"DETAILS.AQ" = "AQ";

@@ -10,13 +10,19 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum AppLocalization {
-  /// Description
-  public static let desp = AppLocalization.tr("Localizable", "DESP", fallback: "Description")
-  /// Localizable.strings
-  ///   WeatherApp
-  /// 
-  ///   Created by Le Chris on 21.03.2023.
-  public static let title = AppLocalization.tr("Localizable", "TITLE", fallback: "Title")
+  public enum Details {
+    /// AQ
+    public static let aq = AppLocalization.tr("Localizable", "DETAILS.AQ", fallback: "AQ")
+    /// % RAIN
+    public static let rain = AppLocalization.tr("Localizable", "DETAILS.RAIN", fallback: "% RAIN")
+    /// Localizable.strings
+    ///   WeatherApp
+    /// 
+    ///   Created by Le Chris on 21.03.2023.
+    public static let time = AppLocalization.tr("Localizable", "DETAILS.TIME", fallback: "TIME")
+    /// UV
+    public static let uv = AppLocalization.tr("Localizable", "DETAILS.UV", fallback: "UV")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

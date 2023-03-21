@@ -24,15 +24,15 @@ struct DetailsView: View {
     var body: some View {
         ZStack {
             
-            RoundedRectangle(cornerRadius: 11).foregroundColor(Color("LightGray"))
+            RoundedRectangle(cornerRadius: 11).foregroundColor(AppAssets.lightGray.swiftUIColor)
             HStack {
-                VerticalStack(title: "TIME", value: time)
+                VerticalStack(title: AppLocalization.Details.time, value: time)
                 Spacer()
-                VerticalStack(title: "UV", value: String(uv))
+                VerticalStack(title: AppLocalization.Details.uv, value: String(uv))
                 Spacer()
-                VerticalStack(title: "% RAIN", value: "\(String(rain)) %")
+                VerticalStack(title: AppLocalization.Details.rain, value: "\(String(rain)) %")
                 Spacer()
-                VerticalStack(title: "AQ", value: String(aq))
+                VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
             }
             .padding(.horizontal, 20)
         }.frame(height: 60)
@@ -41,15 +41,15 @@ struct DetailsView: View {
 
 struct VerticalStack: View {
     var title: String
-    var value:String
+    var value: String
     
     var body: some View {
         VStack {
             Text(title)
-                .foregroundColor(Color("MediumGray"))
+                .foregroundColor(AppAssets.mediumGray.swiftUIColor)
                 .font(.system(size: 12))
             Text(value)
-                .foregroundColor(Color("DarkGray"))
+                .foregroundColor(AppAssets.darkGray.swiftUIColor)
                 .font(.system(size: 15))
         }
     }

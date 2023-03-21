@@ -30,7 +30,7 @@ struct CurrentTemperatureView: View {
                     .font(.system(size: 35))
                     .fontWeight(.semibold)
                 if isLocal {
-                    Image("Geo")
+                    AppAssets.geo.swiftUIImage
                 }
             }
             .frame(height: 20)
@@ -52,15 +52,15 @@ enum Icon {
     var image: Image {
         switch self {
         case .cloud:
-            return Image("Cloud")
+            return AppAssets.cloud.swiftUIImage
         case .cloudSun:
-            return Image("CloudSun")
+            return AppAssets.cloudSun.swiftUIImage
         case .cloudThunderbold:
-            return Image("CloudThunderbold")
+            return AppAssets.cloudThunderbold.swiftUIImage
         case .rain:
-            return Image("Rain")
+            return AppAssets.rain.swiftUIImage
         case .sun:
-            return Image("Sun")
+            return AppAssets.sun.swiftUIImage
         }
     }
     
