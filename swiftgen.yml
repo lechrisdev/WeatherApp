@@ -1,0 +1,18 @@
+strings:
+  inputs:
+    - WeatherApp/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      params:
+        publicAccess: true
+        enumName: AppLocalization
+      output: WeatherApp/SwiftGen/Strings.swift
+xcassets:
+  inputs:
+    - WeatherApp/Assets.xcassets
+  outputs:
+    templateName: swift5
+    params:
+        publicAccess: true
+        enumName: AppAssets
+    output: WeatherApp/SwiftGen/Assets.swift

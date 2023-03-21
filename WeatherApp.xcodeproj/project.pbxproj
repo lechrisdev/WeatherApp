@@ -12,6 +12,10 @@
 		85400A3E29C87040008BD1E7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85400A3D29C87040008BD1E7 /* MainView.swift */; };
 		85400A4229C87145008BD1E7 /* CurrentTemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85400A4129C87145008BD1E7 /* CurrentTemperatureView.swift */; };
 		85400A4429C9B6B0008BD1E7 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85400A4329C9B6AF008BD1E7 /* DetailsView.swift */; };
+		85400A4629C9D9AC008BD1E7 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 85400A4529C9D9AC008BD1E7 /* swiftgen.yml */; };
+		85400A4A29C9DDCE008BD1E7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85400A4C29C9DDCE008BD1E7 /* Localizable.strings */; };
+		85400A5229C9E1EB008BD1E7 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85400A5029C9E1EB008BD1E7 /* Strings.swift */; };
+		85400A5329C9E1EB008BD1E7 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85400A5129C9E1EB008BD1E7 /* Assets.swift */; };
 		854E253429C857C000E826FE /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E253329C857C000E826FE /* WeatherAppApp.swift */; };
 		854E253829C857C200E826FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854E253729C857C200E826FE /* Assets.xcassets */; };
 		854E253B29C857C200E826FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854E253A29C857C200E826FE /* Preview Assets.xcassets */; };
@@ -48,6 +52,11 @@
 		85400A3D29C87040008BD1E7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		85400A4129C87145008BD1E7 /* CurrentTemperatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTemperatureView.swift; sourceTree = "<group>"; };
 		85400A4329C9B6AF008BD1E7 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		85400A4529C9D9AC008BD1E7 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		85400A4B29C9DDCE008BD1E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		85400A4D29C9DDD0008BD1E7 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		85400A5029C9E1EB008BD1E7 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		85400A5129C9E1EB008BD1E7 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		854E253029C857C000E826FE /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		854E253329C857C000E826FE /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
 		854E253729C857C200E826FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,9 +131,19 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		85400A4F29C9E13E008BD1E7 /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				85400A5129C9E1EB008BD1E7 /* Assets.swift */,
+				85400A5029C9E1EB008BD1E7 /* Strings.swift */,
+			);
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
 		854E252729C857C000E826FE = {
 			isa = PBXGroup;
 			children = (
+				85400A4529C9D9AC008BD1E7 /* swiftgen.yml */,
 				854E253229C857C000E826FE /* WeatherApp */,
 				854E254829C857C200E826FE /* WeatherAppTests */,
 				854E255229C857C200E826FE /* WeatherAppUITests */,
@@ -147,6 +166,8 @@
 		854E253229C857C000E826FE /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				85400A4C29C9DDCE008BD1E7 /* Localizable.strings */,
+				85400A4F29C9E13E008BD1E7 /* SwiftGen */,
 				854E253329C857C000E826FE /* WeatherAppApp.swift */,
 				85400A3F29C870BE008BD1E7 /* MainView */,
 				854E253729C857C200E826FE /* Assets.xcassets */,
@@ -203,6 +224,8 @@
 			buildConfigurationList = 854E255929C857C200E826FE /* Build configuration list for PBXNativeTarget "WeatherApp" */;
 			buildPhases = (
 				9C9A8614FAB65E5751C149E9 /* [CP] Check Pods Manifest.lock */,
+				85400A4729C9D9D5008BD1E7 /* SwiftLint */,
+				85400A4E29C9DE76008BD1E7 /* SwiftGen */,
 				854E252C29C857C000E826FE /* Sources */,
 				854E252D29C857C000E826FE /* Frameworks */,
 				854E252E29C857C000E826FE /* Resources */,
@@ -286,6 +309,7 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
 			);
 			mainGroup = 854E252729C857C000E826FE;
 			productRefGroup = 854E253129C857C000E826FE /* Products */;
@@ -305,7 +329,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				854E253B29C857C200E826FE /* Preview Assets.xcassets in Resources */,
+				85400A4A29C9DDCE008BD1E7 /* Localizable.strings in Resources */,
 				854E253829C857C200E826FE /* Assets.xcassets in Resources */,
+				85400A4629C9D9AC008BD1E7 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +390,43 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		85400A4729C9D9D5008BD1E7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		85400A4E29C9DE76008BD1E7 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
 		};
 		9C9A8614FAB65E5751C149E9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -435,10 +498,12 @@
 			files = (
 				854E254029C857C200E826FE /* WeatherApp.xcdatamodeld in Sources */,
 				85400A3E29C87040008BD1E7 /* MainView.swift in Sources */,
+				85400A5329C9E1EB008BD1E7 /* Assets.swift in Sources */,
 				854E253D29C857C200E826FE /* Persistence.swift in Sources */,
 				854E253429C857C000E826FE /* WeatherAppApp.swift in Sources */,
 				85400A4229C87145008BD1E7 /* CurrentTemperatureView.swift in Sources */,
 				85400A4429C9B6B0008BD1E7 /* DetailsView.swift in Sources */,
+				85400A5229C9E1EB008BD1E7 /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +538,18 @@
 			targetProxy = 854E255029C857C200E826FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		85400A4C29C9DDCE008BD1E7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85400A4B29C9DDCE008BD1E7 /* en */,
+				85400A4D29C9DDD0008BD1E7 /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		854E255729C857C200E826FE /* Debug */ = {

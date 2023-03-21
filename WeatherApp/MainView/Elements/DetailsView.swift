@@ -23,6 +23,7 @@ struct DetailsView: View {
     
     var body: some View {
         ZStack {
+            
             RoundedRectangle(cornerRadius: 11).foregroundColor(Color("LightGray"))
             HStack {
                 VerticalStack(title: "TIME", value: time)
