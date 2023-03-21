@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
+        VStack {
+            CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
+            DetailsView(time: "12.00 PM", uv: 2, rain: 60, aq: 25).padding(.horizontal, 24)
+        }
     }
 }
 
