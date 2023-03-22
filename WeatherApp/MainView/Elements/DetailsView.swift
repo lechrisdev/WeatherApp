@@ -30,7 +30,7 @@ struct DetailsView: View {
                 Spacer()
                 VerticalStack(title: AppLocalization.Details.uv, value: String(uv))
                 Spacer()
-                VerticalStack(title: AppLocalization.Details.rain, value: "\(String(rain)) %")
+                VerticalStack(title: "% " + AppLocalization.Details.rain, value: "\(String(rain)) %")
                 Spacer()
                 VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
             }

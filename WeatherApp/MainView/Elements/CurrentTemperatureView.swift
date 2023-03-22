@@ -42,30 +42,6 @@ struct CurrentTemperatureView: View {
     }
 }
 
-enum Icon {
-    case cloud
-    case cloudSun
-    case cloudThunderbold
-    case rain
-    case sun
-    
-    var image: Image {
-        switch self {
-        case .cloud:
-            return AppAssets.cloud.swiftUIImage
-        case .cloudSun:
-            return AppAssets.cloudSun.swiftUIImage
-        case .cloudThunderbold:
-            return AppAssets.cloudThunderbold.swiftUIImage
-        case .rain:
-            return AppAssets.rain.swiftUIImage
-        case .sun:
-            return AppAssets.sun.swiftUIImage
-        }
-    }
-    
-}
-
 struct CurrentTemperatureView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
