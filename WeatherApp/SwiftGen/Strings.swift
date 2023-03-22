@@ -13,8 +13,8 @@ public enum AppLocalization {
   public enum Details {
     /// AQ
     public static let aq = AppLocalization.tr("Localizable", "DETAILS.AQ", fallback: "AQ")
-    /// % RAIN
-    public static let rain = AppLocalization.tr("Localizable", "DETAILS.RAIN", fallback: "% RAIN")
+    /// RAIN
+    public static let rain = AppLocalization.tr("Localizable", "DETAILS.RAIN", fallback: "RAIN")
     /// Localizable.strings
     ///   WeatherApp
     /// 
