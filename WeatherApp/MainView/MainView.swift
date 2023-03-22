@@ -24,7 +24,12 @@ struct MainView: View {
             CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
             DetailsView(time: "12.00 PM", uv: 2, rain: 60, aq: 25)
                 .padding(.horizontal, 24)
-            HourlyWeather(hours: hours).padding(.top, 12)
+            HourlyWeather(hours: hours)
+                .padding(.top, 12)
+                .padding(.horizontal, 24)
+            MapView(lat: 46.5, long: 30.7)
+                .padding(.top, 12)
+                .padding(.horizontal, 24)
         }
     }
 }

@@ -23,8 +23,8 @@ struct DetailsView: View {
     
     var body: some View {
         ZStack {
-            
-            RoundedRectangle(cornerRadius: 11).foregroundColor(AppAssets.lightGray.swiftUIColor)
+            RoundedRectangle(cornerRadius: 11)
+                .foregroundColor(AppAssets.lightGray.swiftUIColor)
             HStack {
                 VerticalStack(title: AppLocalization.Details.time, value: time)
                 Spacer()

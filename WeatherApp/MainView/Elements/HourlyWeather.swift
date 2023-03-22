@@ -19,17 +19,20 @@ struct HourlyWeather: View {
     let hours: [HourWeather] // ДАННЫЕ О ПОГОДЕ
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(Array(hours), id: \.self) { hour in
-                    
-                        // СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
-                    HourCell(temperature: hour.temperature,
-                             icon: hour.icon,
-                             time: hour.time)
+        ZStack {
+            RoundedRectangle(cornerRadius: 11).foregroundColor(AppAssets.lightGray.swiftUIColor)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(Array(hours), id: \.self) { hour in
+                        
+                            // СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
+                        HourCell(temperature: hour.temperature,
+                                 icon: hour.icon,
+                                 time: hour.time)
+                    }
                 }
-            }
-        }.padding(.horizontal, 16)
+            }.padding(.horizontal, 16)
+        }
     }
 }
 
@@ -59,6 +62,7 @@ struct HourCell: View {
             Text(time)
                 .font(.system(size: 10))
         }
+        .frame(height: 155)
     }
 }
 
