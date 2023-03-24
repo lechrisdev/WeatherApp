@@ -22,18 +22,16 @@ struct DetailsView: View {
     }
     
     var body: some View {
-        ZStack {
-            HStack {
-                VerticalStack(title: AppLocalization.Details.time, value: time)
-                Spacer()
-                VerticalStack(title: AppLocalization.Details.uv, value: String(uv))
-                Spacer()
-                VerticalStack(title: "% " + AppLocalization.Details.rain, value: "\(String(rain)) %")
-                Spacer()
-                VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
-            }
-            .padding(.horizontal, 20)
-        }.frame(height: 60)
+        HStack {
+            VerticalStack(title: AppLocalization.Details.time, value: time)
+            Spacer()
+            VerticalStack(title: AppLocalization.Details.uv, value: String(uv))
+            Spacer()
+            VerticalStack(title: "% " + AppLocalization.Details.rain, value: "\(String(rain)) %")
+            Spacer()
+            VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
+        }
+        .padding(.all, 18)
     }
 }
 
