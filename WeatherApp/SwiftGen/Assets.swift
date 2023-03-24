@@ -34,6 +34,7 @@ public enum AppAssets {
   public static let cloudThunderbold = ImageAsset(name: "CloudThunderbold")
   public static let rain = ImageAsset(name: "Rain")
   public static let sun = ImageAsset(name: "Sun")
+  public static let search = ImageAsset(name: "search")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

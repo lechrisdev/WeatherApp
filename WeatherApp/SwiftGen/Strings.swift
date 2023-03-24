@@ -23,6 +23,10 @@ public enum AppLocalization {
     /// UV
     public static let uv = AppLocalization.tr("Localizable", "DETAILS.UV", fallback: "UV")
   }
+  public enum Search {
+    /// Search Location
+    public static let searchlocation = AppLocalization.tr("Localizable", "SEARCH.SEARCHLOCATION", fallback: "Search Location")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

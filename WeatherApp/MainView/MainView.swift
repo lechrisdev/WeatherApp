@@ -21,6 +21,9 @@ struct MainView: View {
     
     var body: some View {
         ScrollView {
+            SearchFieldView(onTap: { print("кнопка поиска нажалась, переход на другой экран") })
+                .padding(.horizontal, 24)
+                .padding(.top, 44)
             CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
             DetailsView(time: "12.00 PM", uv: 2, rain: 60, aq: 25)
                 .padding(.horizontal, 24)
