@@ -19,8 +19,7 @@ struct HourlyWeather: View {
     let hours: [HourWeather] // ДАННЫЕ О ПОГОДЕ
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 11).foregroundColor(AppAssets.lightGray.swiftUIColor)
+ 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(Array(hours), id: \.self) { hour in
@@ -32,7 +31,6 @@ struct HourlyWeather: View {
                     }
                 }
             }.padding(.horizontal, 16)
-        }
     }
 }
 
