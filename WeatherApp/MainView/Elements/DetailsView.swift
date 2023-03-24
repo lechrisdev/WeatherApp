@@ -22,20 +22,16 @@ struct DetailsView: View {
     }
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 11)
-                .foregroundColor(AppAssets.lightGray.swiftUIColor)
-            HStack {
-                VerticalStack(title: AppLocalization.Details.time, value: time)
-                Spacer()
-                VerticalStack(title: AppLocalization.Details.uv, value: String(uv))
-                Spacer()
-                VerticalStack(title: "% " + AppLocalization.Details.rain, value: "\(String(rain)) %")
-                Spacer()
-                VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
-            }
-            .padding(.horizontal, 20)
-        }.frame(height: 60)
+        HStack {
+            VerticalStack(title: AppLocalization.Details.time, value: time)
+            Spacer()
+            VerticalStack(title: AppLocalization.Details.uv, value: String(uv))
+            Spacer()
+            VerticalStack(title: "% " + AppLocalization.Details.rain, value: "\(String(rain)) %")
+            Spacer()
+            VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
+        }
+        .padding(.all, 18)
     }
 }
 
@@ -50,7 +46,8 @@ struct VerticalStack: View {
                 .font(.system(size: 12))
             Text(value)
                 .foregroundColor(AppAssets.darkGray.swiftUIColor)
-                .font(.system(size: 15))
+//                .font(.system(size: 15))
+                .font(.system(.body))
         }
     }
 }

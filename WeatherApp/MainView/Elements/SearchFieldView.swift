@@ -21,20 +21,16 @@ struct SearchFieldView: View {
             action: {
                 onTap()
         }, label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(AppAssets.lightGray.swiftUIColor)
-                    .frame(height: 46)
 //                TextField("searchScreen",
 //                          text: .constant(""),
 //                          prompt: Text("Search Location"))
-                HStack {
-                    Text(AppLocalization.Search.searchlocation)
-                        .padding(.leading, 15).foregroundColor(AppAssets.mediumGray.swiftUIColor)
-                    Spacer()
-                    AppAssets.search.swiftUIImage
-                        .padding(.trailing, 15)
-                }
+            HStack {
+                Text(AppLocalization.Search.searchlocation)
+                    .padding(.leading, 15)
+                    .foregroundColor(AppAssets.mediumGray.swiftUIColor)
+                Spacer()
+                AppAssets.search.swiftUIImage
+                    .padding(.trailing, 15)
             }
         })
     }
