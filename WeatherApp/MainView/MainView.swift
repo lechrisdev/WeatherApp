@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
+    let stringData = "2023-03-16T13:57"
+    
     let hours = [
         HourWeather(temperature: 24, icon: .cloud, time: "12:00"),
         HourWeather(temperature: 24, icon: .cloudSun, time: "13:00"),
@@ -18,6 +20,13 @@ struct MainView: View {
         HourWeather(temperature: 26, icon: .cloudSun, time: "17:00"),
         HourWeather(temperature: 24, icon: .rain, time: "18:00")
     ]
+    
+    init() {
+        let date = Date(string: stringData)
+        print(">>>>", date)
+        print(">>>>", date.toString(style: .fullFormat))
+        print(">>>>", date.toString(style: .amPm))
+    }
     
     var body: some View {
         ScrollView {
