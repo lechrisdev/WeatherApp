@@ -21,12 +21,6 @@ public extension Date {
 }
 
 public enum DateStringStyle {
-//    case startDDMonthYear
-//    case endedMonthDay
-//    case mmddyy
-//    case monthYear
-//    case lastPost
-//    case iso8601
     case amPm
     case fullFormat
 }
