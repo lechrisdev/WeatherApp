@@ -12,7 +12,8 @@ extension View {
     
     func roundedBackground(_ cornerRadius: CGFloat = 11) -> some View {
         return ZStack(alignment: .center) {
-                    RoundedRectangle(cornerRadius: 15).foregroundColor(AppAssets.lightGray.swiftUIColor)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .foregroundColor(AppAssets.lightGray.swiftUIColor)
                     self
                 }
     }
