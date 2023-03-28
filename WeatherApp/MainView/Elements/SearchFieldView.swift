@@ -26,6 +26,7 @@ struct SearchFieldView: View {
 //                          prompt: Text("Search Location"))
             HStack {
                 Text(AppLocalization.Search.searchlocation)
+                    .font(.system(size: 15))
                     .padding(.leading, 15)
                     .foregroundColor(AppAssets.mediumGray.swiftUIColor)
                 Spacer()

@@ -29,12 +29,16 @@ struct MainView: View {
     }
     
     var body: some View {
-        ScrollView {
+        VStack {
             SearchFieldView(onTap: { print("кнопка поиска нажалась, переход на другой экран") })
                 .padding(.vertical, 11)
                 .roundedBackground(15)
+                .frame(height: 30)
                 .padding(.horizontal, 24)
-                .padding(.top, 44)
+                .padding(.top, 12)
+                
+        ScrollView {
+
             CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
             DetailsView(time: "12.00 PM", uv: 2, rain: 60, aq: 25)
                 .roundedBackground()
@@ -47,6 +51,8 @@ struct MainView: View {
                 .padding(.top, 12)
                 .padding(.horizontal, 24)
         }
+        }
+
     }
 }
 
