@@ -25,16 +25,18 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum AppAssets {
   public static let accentColor = ColorAsset(name: "AccentColor")
+  public static let arrowBack = ImageAsset(name: "ArrowBack")
   public static let darkGray = ColorAsset(name: "DarkGray")
   public static let lightGray = ColorAsset(name: "LightGray")
   public static let mediumGray = ColorAsset(name: "MediumGray")
   public static let geo = ImageAsset(name: "Geo")
+  public static let search = ImageAsset(name: "Search")
+  public static let trash = ImageAsset(name: "Trash")
   public static let cloud = ImageAsset(name: "Cloud")
   public static let cloudSun = ImageAsset(name: "CloudSun")
   public static let cloudThunderbold = ImageAsset(name: "CloudThunderbold")
   public static let rain = ImageAsset(name: "Rain")
   public static let sun = ImageAsset(name: "Sun")
-  public static let search = ImageAsset(name: "search")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

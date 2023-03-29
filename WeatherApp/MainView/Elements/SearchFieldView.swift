@@ -21,9 +21,7 @@ struct SearchFieldView: View {
             action: {
                 onTap()
         }, label: {
-//                TextField("searchScreen",
-//                          text: .constant(""),
-//                          prompt: Text("Search Location"))
+            
             HStack {
                 Text(AppLocalization.Search.searchlocation)
                     .font(.system(size: 15))
