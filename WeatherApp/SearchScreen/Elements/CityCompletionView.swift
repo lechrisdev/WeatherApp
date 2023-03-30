@@ -12,17 +12,12 @@ struct CityCompletionView: View {
     var cities: [String]
     
     var body: some View {
-//        Text("Mumbai")
-//            .padding(.vertical, 8)
-//            .padding(.horizontal, 18)
-//            .roundedBackground(7)
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 0) {
-                ForEach(Array(cities), id: \.self) { city in
-                    
-                                    // (2) СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
-                    CityCell(cityName: city)
-                }
+
+        VStack(alignment: .leading, spacing: 5) {
+            ForEach(Array(cities), id: \.self) { city in
+                
+                                // (2) СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
+                CityCell(cityName: city)
             }
         }
     }

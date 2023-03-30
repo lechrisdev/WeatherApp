@@ -31,11 +31,11 @@ struct MainView: View {
     var body: some View {
         VStack {
             SearchFieldView(onTap: { print("кнопка поиска нажалась, переход на другой экран") })
-                .padding(.vertical, 11)
+                .padding(.vertical, 12)
                 .roundedBackground(15)
                 .frame(height: 30)
-                .padding(.horizontal, 24)
                 .padding(.top, 12)
+                .padding(.horizontal, 24)
                 
         ScrollView {
 

@@ -14,16 +14,17 @@ struct SearchScreenView: View {
     var body: some View {
         ScrollView {
             TextFieldView(text: $searchText)
-                .padding(.top, 44)
                 .padding(.horizontal, 24)
             ScrollView(.horizontal, showsIndicators: false) {
                 CityCompletionView(cities: ["London", "Paris", "Odesa", "Bangladesh", "Kirovograd"])
             }
             .padding(.horizontal, 24)
             .padding(.top, 15)
-            
+
             Text(searchText)
+            
         }
+        .padding(.top, 12)
     }
 }
 
