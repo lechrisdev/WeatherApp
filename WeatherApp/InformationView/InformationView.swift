@@ -1,13 +1,13 @@
 //
-//  MainView.swift
+//  InformationView.swift
 //  WeatherApp
 //
-//  Created by Le Chris on 20.03.2023.
+//  Created by Le Chris on 31.03.2023.
 //
 
 import SwiftUI
 
-struct MainView: View {
+struct InformationView: View {
     
     let stringData = "2023-03-16T13:57"
     
@@ -39,44 +39,32 @@ struct MainView: View {
     }
     
     var body: some View {
-        VStack {
-            SearchFieldView(onTap: { print("кнопка поиска нажалась, переход на другой экран") })
-                .padding(.vertical, 12)
-                .roundedBackground(15)
-                .frame(height: 30)
+                
+        ScrollView {
+
+            CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
+            DetailsView(time: "12.00 PM", uv: 2, rain: 60, aq: 25)
+                .roundedBackground()
+                .padding(.horizontal, 24)
+            HourlyWeather(hours: hours)
+                .roundedBackground()
                 .padding(.top, 12)
                 .padding(.horizontal, 24)
-                
-            ScrollView {
-
-//                CurrentTemperatureView(title: "Odesa", icon: .cloud, isLocal: true, temperature: 8)
-//                DetailsView(time: "12.00 PM", uv: 2, rain: 60, aq: 25)
-//                    .roundedBackground()
-//                    .padding(.horizontal, 24)
-//                HourlyWeather(hours: hours)
-//                    .roundedBackground()
-//                    .padding(.top, 12)
-//                    .padding(.horizontal, 24)
-//
-//                // СЮДА ВСТАВИТЬ ВЬЮ С ЕЖЕНЕДЕЛЬНОЙ ПОГОДОЙ
-//                WeekForecast(days: days)
-//                    .padding(.top, 12)
-//                    .padding(.horizontal, 24)
-//
-//                MapView(lat: 46.5, long: 30.7)
-//                    .padding(.top, 12)
-//                    .padding(.horizontal, 24)
-                
-                InformationView() // ВЫРЕЗАНО В ОТДЕЛЬНОЕ ВЬЮ
-                
-            }
+            
+            // СЮДА ВСТАВИТЬ ВЬЮ С ЕЖЕНЕДЕЛЬНОЙ ПОГОДОЙ
+            WeekForecast(days: days)
+                .padding(.top, 12)
+                .padding(.horizontal, 24)
+            
+            MapView(lat: 46.5, long: 30.7)
+                .padding(.top, 12)
+                .padding(.horizontal, 24)
         }
-
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct InformationView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        InformationView()
     }
 }
