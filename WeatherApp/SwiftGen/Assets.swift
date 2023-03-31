@@ -27,6 +27,7 @@ public enum AppAssets {
   public static let accentColor = ColorAsset(name: "AccentColor")
   public static let arrowBack = ImageAsset(name: "ArrowBack")
   public static let darkGray = ColorAsset(name: "DarkGray")
+  public static let lightBlue = ColorAsset(name: "LightBlue")
   public static let lightGray = ColorAsset(name: "LightGray")
   public static let mediumGray = ColorAsset(name: "MediumGray")
   public static let geo = ImageAsset(name: "Geo")
