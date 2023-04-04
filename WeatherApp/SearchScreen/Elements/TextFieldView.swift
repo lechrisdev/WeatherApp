@@ -23,8 +23,9 @@ struct TextFieldView: View {
                 AppAssets.search.swiftUIImage
                     .padding(.trailing, 15)
             }
+            .frame(height: 44)
             .roundedBackground(15)
-            .frame(height: 46)
+            
     }
 }
 

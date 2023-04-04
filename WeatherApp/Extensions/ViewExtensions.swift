@@ -11,10 +11,14 @@ import SwiftUI
 extension View {
     
     func roundedBackground(_ cornerRadius: CGFloat = 11) -> some View {
-        return ZStack(alignment: .center) {
+//        return ZStack(alignment: .center) {
+//            RoundedRectangle(cornerRadius: cornerRadius)
+//                .foregroundColor(AppAssets.darkGray.swiftUIColor)
+//                    self
+//                }
+        return self.background {
             RoundedRectangle(cornerRadius: cornerRadius)
-                .foregroundColor(AppAssets.lightGray.swiftUIColor)
-                    self
-                }
+                .foregroundColor(AppAssets.darkGray.swiftUIColor)
+        }
     }
 }
