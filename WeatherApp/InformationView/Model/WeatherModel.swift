@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherModel {
+struct WeatherModel: Hashable {
     
         // CurrentTemperatureView
     let cityName: String

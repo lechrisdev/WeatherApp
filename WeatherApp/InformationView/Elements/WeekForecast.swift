@@ -58,7 +58,7 @@ struct DailyCell: View {
             Text(dayOfWeek)
                 .font(.system(size: 15))
                 .foregroundColor(AppAssets.darkGray.swiftUIColor)
-                .frame(minWidth: 140, alignment: .leading)
+                .frame(maxWidth: 140, alignment: .leading)
             
             Spacer()
             

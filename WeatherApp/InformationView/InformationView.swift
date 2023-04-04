@@ -14,39 +14,37 @@ struct InformationView: View {
     
     init(model: WeatherModel) {
         self.model = model
-        let date = Date(string: stringData)
-        print(">>>>", date)
-        print(">>>>", date.toString(style: .fullFormat))
-        print(">>>>", date.toString(style: .amPm))
+//        let date = Date(string: stringData)
+//        print(">>>>", date)
+//        print(">>>>", date.toString(style: .fullFormat))
+//        print(">>>>", date.toString(style: .amPm))
     }
     
     var body: some View {
                 
         ScrollView {
-
-            CurrentTemperatureView(title: model.cityName,
-                                   icon: model.icon,
-                                   isLocal: model.isLocal,
-                                   temperature: model.temperature)
-            DetailsView(time: model.currentTime.toString(style: .amPm),
-                        uv: model.uvIndex,
-                        rain: model.rainProbability,
-                        aq: model.airQuality)
+            Group {
+                CurrentTemperatureView(title: model.cityName,
+                                       icon: model.icon,
+                                       isLocal: model.isLocal,
+                                       temperature: model.temperature)
+                DetailsView(time: model.currentTime.toString(style: .amPm),
+                            uv: model.uvIndex,
+                            rain: model.rainProbability,
+                            aq: model.airQuality)
                 .roundedBackground()
-                .padding(.horizontal, 24)
-            HourlyWeather(hours: model.hourlyWeather)
-                .roundedBackground()
-                .padding(.top, 12)
-                .padding(.horizontal, 24)
-            
-            // СЮДА ВСТАВИТЬ ВЬЮ С ЕЖЕНЕДЕЛЬНОЙ ПОГОДОЙ
-            WeekForecast(days: model.dailyWeather)
-                .padding(.top, 12)
-                .padding(.horizontal, 24)
-            
-            MapView(lat: 46.5, long: 30.7)
-                .padding(.top, 12)
-                .padding(.horizontal, 24)
+                HourlyWeather(hours: model.hourlyWeather)
+                    .roundedBackground()
+                    .padding(.top, 12)
+                
+                // СЮДА ВСТАВИТЬ ВЬЮ С ЕЖЕНЕДЕЛЬНОЙ ПОГОДОЙ
+                WeekForecast(days: model.dailyWeather)
+                    .padding(.top, 12)
+                
+                MapView(lat: 46.5, long: 30.7)
+                    .padding(.top, 12)
+            }
+//            .padding(.horizontal, 24)
         }
     }
 }
