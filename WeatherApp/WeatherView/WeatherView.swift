@@ -31,7 +31,9 @@ struct WeatherView: View {
     
     var model: WeatherModel
     
-    init() {
+    var router: Router
+    
+    init(router: Router) {
         model = WeatherModel(cityName: "Odesa",
                                  icon: .sun,
                                  isLocal: true,
@@ -43,31 +45,45 @@ struct WeatherView: View {
                                  hourlyWeather: hours,
                                  dailyWeather: days,
                                  latitude: 46.5, longtitude: 30.7)
+        self.router = router
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             
             HStack {
-                AppAssets.arrowBack.swiftUIImage.frame(width: 40)
+                Button {
+                    print("Нажата кнопка НАЗАТТ")
+                    router.back()
+                } label: {
+                    AppAssets.arrowBack.swiftUIImage
+//                        .frame(width: 40)
+                        .frame(height: 44)
+                }
+
                 Spacer()
+                
                 Button {
                     print("Нажата кнорка добавить")
+                    router.showCitiesList()
+                    // ТУТ ДОЛЖНА ПОМЕНЯТЬСЯ КНОПКА, НА ЗЕЛЕНУЮ
+                    
                 } label: {
                     HStack(spacing: 8) {
                         Text("Add to list")
                             .foregroundColor(Color.black)
                         AppAssets.add.swiftUIImage
-                    }.padding(.all, 14)
+                    }
+                    .padding(.all, 14)
                 } .roundedBackground()
-                    //.frame(minWidth: 0, maxWidth: 150)
                     
             }
-            .frame(height: 40)
+//            .padding(.top, 12)
+            .frame(height: 44)
             
             ScrollView {
+                
                 InformationView(model: model)
-                    
             }
             .padding(.top, 24)
             
@@ -79,6 +95,6 @@ struct WeatherView: View {
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView()
+        WeatherView(router: Router())
     }
 }

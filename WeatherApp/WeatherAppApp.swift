@@ -10,11 +10,17 @@ import SwiftUI
 @main
 struct WeatherAppApp: App {
     let persistenceController = PersistenceController.shared
+    let router = Router()
 
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            EmptyView()
+                .onAppear {
+                    router.configureNavigationController()
+                    router.showMainScreen()
+                }
+//            MainView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

@@ -11,8 +11,11 @@ struct MainView: View {
     
     @ObservedObject var viewModel: MainViewModel
     
-    init() {
+    var router: Router
+    
+    init(router: Router) {
         viewModel = MainViewModel()
+        self.router = router
     }
     
     var body: some View {
@@ -21,12 +24,12 @@ struct MainView: View {
                 
                 SearchFieldView(onTapSearch: {
                     print("кнопка поиска нажалась, переход на другой экран")
+                    router.showSearchScreen()
                 }, onTapList: {
                     print("кнопка списка нажалась")
                     
                 })
                 .padding(.horizontal, 24)
-                
             }
                 
             TabView(content: {
@@ -40,17 +43,17 @@ struct MainView: View {
             }).tabViewStyle(.page)
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
                 .ignoresSafeArea()
-                .padding(.top, 30)
+                .padding(.top, 24)
 
         }
+        .navigationBarHidden(true)
+        .padding(.top, 12)
         
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(router: Router())
     }
 }
-
-
