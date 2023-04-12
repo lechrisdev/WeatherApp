@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct CitiesListView: View {
+    
+    var router: Router
+    
+    init(router: Router) {
+        self.router = router
+    }
+    
     var body: some View {
         
         VStack(alignment: .leading) {
             
-            AppAssets.arrowBack.swiftUIImage
+            Button {
+                print("NAZAD NA WEATHER VIEW")
+                router.back()
+            } label: {
+                AppAssets.arrowBack.swiftUIImage.frame(height: 44)
+            }
             
             ScrollView {
                 CityDetailView(cityName: "Odesa", temperature: 24, date: Date())
@@ -31,6 +43,6 @@ struct CitiesListView: View {
 
 struct CitiesListView_Previews: PreviewProvider {
     static var previews: some View {
-        CitiesListView()
+        CitiesListView(router: Router())
     }
 }

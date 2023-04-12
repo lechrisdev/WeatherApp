@@ -18,7 +18,7 @@ extension View {
 //                }
         return self.background {
             RoundedRectangle(cornerRadius: cornerRadius)
-                .foregroundColor(AppAssets.darkGray.swiftUIColor)
+                .foregroundColor(AppAssets.lightGray.swiftUIColor)
         }
     }
 }
