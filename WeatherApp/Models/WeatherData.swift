@@ -5,11 +5,6 @@
 //  Created by Le Chris on 12.04.2023.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let weatherData = try? JSONDecoder().decode(WeatherData.self, from: jsonData)
-
 import Foundation
 
 // MARK: - WeatherData
@@ -105,5 +100,46 @@ struct HourlyUnits: Codable {
         case temperature2M = "temperature_2m"
         case precipitation, weathercode
         case uvIndex = "uv_index"
+    }
+}
+
+extension WeatherData {
+    var domain: WeatherModel {
+        
+        let hourlyWeather = hourly.time.enumerated().map { index, time in
+                let temperature = hourly.temperature2M[index]
+                let weatherCode = hourly.weathercode[index]
+            let formattedTime = Date(string: time).toString(style: .amPm)
+                return HourWeather(temperature: Int(temperature),
+                                   icon: Icon(weatherId: weatherCode),
+                                   time: formattedTime)
+        }
+        
+        let dailyWeather = daily.time.enumerated().map { index, time in
+                let day = Date(stringDay: time)
+            print(">>>>", time)
+                let weekday = day.dayOfTheWeek() ?? ""
+                let icon = Icon(weatherId: daily.weathercode[index])
+                let probability = daily.precipitationProbabilityMax[index]
+                let dayTemp = daily.temperature2MMax[index]
+                let nightTemp = daily.temperature2MMin[index]
+                return DayWeather(dayOfWeek: weekday,
+                                  icon: icon,
+                                  probability: probability,
+                                  dayTemp: Int(dayTemp),
+                                  nightTemp: Int(nightTemp))
+        }
+        
+        return WeatherModel(icon: Icon(weatherId: currentWeather.weathercode),
+                            isLocal: false,
+                            temperature: Int(currentWeather.temperature),
+                            currentTime: Date(string: currentWeather.time),
+                            uvIndex: Int(hourly.uvIndex[0]),
+                            rainProbability: Int(hourly.precipitation[0]),
+                            airQuality: 0,
+                            hourlyWeather: hourlyWeather,
+                            dailyWeather: dailyWeather,
+                            latitude: latitude,
+                            longtitude: longitude)
     }
 }

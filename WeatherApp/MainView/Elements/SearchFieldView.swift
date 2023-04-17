@@ -12,7 +12,8 @@ struct SearchFieldView: View {
     var onTapSearch: () -> Void
     var onTapList: () -> Void
     
-    init(onTapSearch: @escaping () -> Void, onTapList: @escaping () -> Void) {
+    init(onTapSearch: @escaping () -> Void,
+         onTapList: @escaping () -> Void) {
         self.onTapSearch = onTapSearch
         self.onTapList = onTapList
     }

@@ -40,8 +40,18 @@ public enum AppAssets {
   public static let cloud = ImageAsset(name: "Cloud")
   public static let cloudSun = ImageAsset(name: "CloudSun")
   public static let cloudThunderbold = ImageAsset(name: "CloudThunderbold")
+  public static let drizzle = ImageAsset(name: "Drizzle")
+  public static let drizzleFreezing = ImageAsset(name: "DrizzleFreezing")
+  public static let fog = ImageAsset(name: "Fog")
+  public static let fogRime = ImageAsset(name: "FogRime")
   public static let rain = ImageAsset(name: "Rain")
+  public static let rainFreezing = ImageAsset(name: "RainFreezing")
+  public static let rainShowers = ImageAsset(name: "RainShowers")
+  public static let snow = ImageAsset(name: "Snow")
+  public static let snowFall = ImageAsset(name: "SnowFall")
+  public static let snowGrains = ImageAsset(name: "SnowGrains")
   public static let sun = ImageAsset(name: "Sun")
+  public static let thunderstormHail = ImageAsset(name: "ThunderstormHail")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

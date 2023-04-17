@@ -11,3 +11,10 @@
 "DETAILS.RAIN" = "ОПАДИ";
 "DETAILS.AQ" = "ЯП";
 "SEARCH.SEARCHLOCATION" = "Пошук";
+"SUNDAY" = "Неділя";
+"MONDAY" = "Понеділок";
+"TUESDAY" = "Вівторок";
+"WEDNESDAY" = "Середа";
+"THURSDAY" = "Четвер";
+"FRIDAY" = "Пʼятниця";
+"SATURDAY" = "Субота";

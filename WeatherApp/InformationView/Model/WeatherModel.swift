@@ -9,22 +9,21 @@ import Foundation
 
 struct WeatherModel: Hashable {
     
-        // CurrentTemperatureView
-    let cityName: String
+                // CurrentTemperatureView
     let icon: Icon
     let isLocal: Bool
     let temperature: Int
-        // DetailsView
+                // DetailsView
     let currentTime: Date
     let uvIndex: Int
     let rainProbability: Int
     let airQuality: Int
-        // HourlyWeather
+                // HourlyWeather
     let hourlyWeather: [HourWeather]
-        // WeekForecast
+                // WeekForecast
     let dailyWeather: [DayWeather]
-        // MapView
-    let latitude: Float
-    let longtitude: Float
+                // MapView
+    let latitude: Double
+    let longtitude: Double
     
 }

@@ -10,6 +10,20 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum AppLocalization {
+  /// Friday
+  public static let friday = AppLocalization.tr("Localizable", "FRIDAY", fallback: "Friday")
+  /// Monday
+  public static let monday = AppLocalization.tr("Localizable", "MONDAY", fallback: "Monday")
+  /// Saturday
+  public static let saturday = AppLocalization.tr("Localizable", "SATURDAY", fallback: "Saturday")
+  /// Sunday
+  public static let sunday = AppLocalization.tr("Localizable", "SUNDAY", fallback: "Sunday")
+  /// Thursday
+  public static let thursday = AppLocalization.tr("Localizable", "THURSDAY", fallback: "Thursday")
+  /// Tuesday
+  public static let tuesday = AppLocalization.tr("Localizable", "TUESDAY", fallback: "Tuesday")
+  /// Wednesday
+  public static let wednesday = AppLocalization.tr("Localizable", "WEDNESDAY", fallback: "Wednesday")
   public enum Details {
     /// AQ
     public static let aq = AppLocalization.tr("Localizable", "DETAILS.AQ", fallback: "AQ")
