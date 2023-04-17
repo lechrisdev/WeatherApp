@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CityCompletionView: View {
     
-    var cities: [String]
+    var cities: [CityModel]
     
     var body: some View {
 
@@ -17,7 +17,7 @@ struct CityCompletionView: View {
             ForEach(Array(cities), id: \.self) { city in
                 
                                 // (2) СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
-                CityCell(cityName: city)
+                CityCell(model: city)
             }
         }
     }
@@ -25,28 +25,42 @@ struct CityCompletionView: View {
 
 struct CityCell: View {     // (1) ЯЧЕЙКА = ПРЯМОУГОЛЬНИК И НАЗВАНИЕ ГОРОДА
     
-    var cityName: String
+    var model: CityModel
     
-    init(cityName: String) {
-        self.cityName = cityName
+    init(model: CityModel) {
+        self.model = model
     }
     
     var body: some View {
         
-        Text(cityName)
-            .font(.system(size: 10))
-            .padding(.vertical, 8)
-            .padding(.horizontal, 18)
-            .roundedBackground(7)
-            .padding(.trailing, 10)
-            .frame(height: 31)
+        Button(
+            action: {
+                print("\(model.longtitude), \(model.latitude)")
+        }, label: {
+            
+            Text("\(model.city) (\(model.state), \(model.country)")
+                .foregroundColor(.black)
+                .font(.system(size: 10))
+                .padding(.vertical, 8)
+                .padding(.horizontal, 18)
+                .roundedBackground(7)
+                .padding(.trailing, 10)
+                .frame(height: 31)
+        })
+        .frame(height: 44)
+        .roundedBackground(15)
+        
     }
 }
 
 struct CityCompletionView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let cities = ["Mumbai", "Toronro", "Los Angeles", "Paris"]
+        let cities = [
+            CityModel(city: "Odesa", state: "Odesa Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5),
+            CityModel(city: "Kharkiv", state: "Kharkivs`ka Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5),
+            CityModel(city: "Odesa", state: "Odesa Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5)
+        ]
         CityCompletionView(cities: cities)
     }
 }

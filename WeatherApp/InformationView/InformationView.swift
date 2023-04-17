@@ -6,11 +6,35 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct InformationView: View {
     
     let stringData = "2023-03-16T13:57"
     let model: WeatherModel
+    @State var cityName = ""
+    
+    func getCityName(coordinates: CLLocationCoordinate2D) async -> String? {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        
+        do {
+            let placemarks = try await geocoder.reverseGeocodeLocation(location)
+            if let placemark = placemarks.first {
+                if let city = placemark.locality {
+                    return city
+                } else {
+                    print("City not found")
+                    return nil
+                }
+            }
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
+        
+        return nil
+    }
     
     init(model: WeatherModel) {
         self.model = model
@@ -24,11 +48,11 @@ struct InformationView: View {
                 
         ScrollView {
             Group {
-                CurrentTemperatureView(title: model.cityName,
+                CurrentTemperatureView(title: cityName,
                                        icon: model.icon,
                                        isLocal: model.isLocal,
                                        temperature: model.temperature)
-                DetailsView(time: model.currentTime.toString(style: .amPm),
+                DetailsView(time: Date().toString(style: .amPm),
                             uv: model.uvIndex,
                             rain: model.rainProbability,
                             aq: model.airQuality)
@@ -45,6 +69,12 @@ struct InformationView: View {
                     .padding(.top, 12)
             }
 //            .padding(.horizontal, 24)
+        }.onAppear {
+            Task {
+                let coordinates = CLLocationCoordinate2D(latitude: model.latitude,
+                                                            longitude: model.longtitude)
+                self.cityName = await getCityName(coordinates: coordinates) ?? ""
+            }
         }
     }
 }
@@ -72,8 +102,7 @@ struct InformationView_Previews: PreviewProvider {
             DayWeather(dayOfWeek: "Tuesday", icon: .sun, probability: 50, dayTemp: 29, nightTemp: 25)
         ]
         
-        let model = WeatherModel(cityName: "Odesa",
-                                 icon: .sun,
+        let model = WeatherModel(icon: .sun,
                                  isLocal: true,
                                  temperature: 25,
                                  currentTime: Date(),

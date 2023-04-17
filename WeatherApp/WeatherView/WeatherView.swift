@@ -34,17 +34,16 @@ struct WeatherView: View {
     var router: Router
     
     init(router: Router) {
-        model = WeatherModel(cityName: "Odesa",
-                                 icon: .sun,
-                                 isLocal: true,
-                                 temperature: 25,
-                                 currentTime: Date(),
-                                 uvIndex: 4,
-                                 rainProbability: 10,
-                                 airQuality: 80,
-                                 hourlyWeather: hours,
-                                 dailyWeather: days,
-                                 latitude: 46.5, longtitude: 30.7)
+        model = WeatherModel(icon: .sun,
+                             isLocal: true,
+                             temperature: 25,
+                             currentTime: Date(),
+                             uvIndex: 4,
+                             rainProbability: 10,
+                             airQuality: 80,
+                             hourlyWeather: hours,
+                             dailyWeather: days,
+                             latitude: 46.5, longtitude: 30.7)
         self.router = router
     }
     
