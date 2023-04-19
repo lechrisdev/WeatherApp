@@ -118,6 +118,8 @@ struct Parsed: Codable {
         case expectedType = "expected_type"
     }
 }
+
+//MARK: - перевод CityData в CityModel
 extension CityData {
     
     var domain: [CityModel] {

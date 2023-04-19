@@ -103,6 +103,7 @@ struct HourlyUnits: Codable {
     }
 }
 
+//MARK: - перевод WeatherData в WeatherModel
 extension WeatherData {
     var domain: WeatherModel {
         
