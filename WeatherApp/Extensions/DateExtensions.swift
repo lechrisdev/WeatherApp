@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public extension Date {
+extension Date {
         
     init(string: String) {
         let date: Date
@@ -29,12 +29,12 @@ public extension Date {
     }
 }
 
-public enum DateStringStyle {
+enum DateStringStyle {
     case amPm
     case fullFormat
 }
 
-public extension Date {
+extension Date {
     
     func toString(style: DateStringStyle) -> String {
         
