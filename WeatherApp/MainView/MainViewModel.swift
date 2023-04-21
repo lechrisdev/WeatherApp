@@ -11,25 +11,18 @@ class MainViewModel: ObservableObject {
     
     @Published var models: [WeatherModel] = []
     
+    let repo = Repository()
+    
     init() {
-        
-        Task {                  // ЗАГРУЗКА ПОГОДЫ ДЛЯ MAIN VIEW
-            let data = await API.sendRequestData(request: Requests.getWeather(latitude: "46.5", longitude: "30.7"))
-            
-            if let result = data?.convertTo(WeatherData.self)?.domain {
+        Task {
+            if let weather = await repo.getWeather(lon: 30.68363780440557, lat: 46.48590215) {
                 DispatchQueue.main.async {
-                    self.models.append(result)
+                    self.models.append(weather)
+                    print(">>>>", self.models.first)
+                
                 }
+                
             }
-            
-//            if let data, let result = try? JSONDecoder().decode(WeatherData.self, from: data) {
-//                let weather = result.domain
-//                print(weather)
-//                DispatchQueue.main.async {
-//                    self.models.append(weather)
-//                }
-//
-//            }
         }
     }
 }

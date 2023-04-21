@@ -11,13 +11,15 @@ struct CityCompletionView: View {
     
     var cities: [CityModel]
     
+    let router: Router
+    
     var body: some View {
 
         VStack(alignment: .leading, spacing: 5) {
             ForEach(Array(cities), id: \.self) { city in
                 
                                 // (2) СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
-                CityCell(model: city)
+                CityCell(model: city, router: router)
             }
         }
     }
@@ -26,9 +28,11 @@ struct CityCompletionView: View {
 struct CityCell: View {     // (1) ЯЧЕЙКА = ПРЯМОУГОЛЬНИК И НАЗВАНИЕ ГОРОДА
     
     var model: CityModel
+    let router: Router
     
-    init(model: CityModel) {
+    init(model: CityModel, router: Router) {
         self.model = model
+        self.router = router
     }
     
     var body: some View {
@@ -36,6 +40,7 @@ struct CityCell: View {     // (1) ЯЧЕЙКА = ПРЯМОУГОЛЬНИК И 
         Button(
             action: {
                 print("\(model.longtitude), \(model.latitude)")
+                router.showWeatherView(lon: model.longtitude, lat: model.latitude)
         }, label: {
             
             Text("\(model.city) (\(model.state), \(model.country)")
@@ -61,6 +66,6 @@ struct CityCompletionView_Previews: PreviewProvider {
             CityModel(city: "Kharkiv", state: "Kharkivs`ka Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5),
             CityModel(city: "Odesa", state: "Odesa Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5)
         ]
-        CityCompletionView(cities: cities)
+        CityCompletionView(cities: cities, router: Router())
     }
 }

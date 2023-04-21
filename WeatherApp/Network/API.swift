@@ -83,7 +83,8 @@ enum Requests: EndPoint {
         case let .autoComplete(city):
             let parameters: [String: Encodable] = [
                 "text": city,
-                "apiKey": "19f20be35e704379a74b18c66a6e5c4d"
+                "apiKey": "19f20be35e704379a74b18c66a6e5c4d",
+                "lang": Locale.current.languageCode ?? "uk"
             ]
             return parameters
         }

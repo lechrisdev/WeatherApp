@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - WeatherData
 struct CityData: Codable {
-    let type: String
-    let features: [Feature]
-    let query: Query
+//    let type: String
+    let features: [Feature]?
+//    let query: Query?
 }
 
 // MARK: - Feature
@@ -30,36 +30,39 @@ struct Geometry: Codable {
 
 // MARK: - Properties
 struct Properties: Codable {
-    let datasource: Datasource
-    let name: String?
-    let country, countryCode, state, city: String
-    let municipality, district: String?
+//    let datasource: Datasource
+//    let name: String?
+//    let countryCode: String?
+    let country, state, city: String?
+//    let municipality, district: String?
     let lon, lat: Double
-    let county: String?
-    let formatted, addressLine1, addressLine2, category: String
-    let timezone: Timezone
-    let resultType: String
-    let rank: Rank
-    let placeID: String
-    let postcode, stateCode, region, stateCOG: String?
-    let departmentCOG: String?
+//    let county: String?
+//    let formatted, addressLine1, addressLine2, category: String?
+//    let timezone: Timezone
+//    let resultType: String
+//    let rank: Rank
+//    let placeID: String
+//    let postcode, stateCode, region, stateCOG: String?
+//    let departmentCOG: String?
 
-    enum CodingKeys: String, CodingKey {
-        case datasource, name, country
-        case countryCode = "country_code"
-        case state, city, municipality, district, lon, lat, county, formatted
-        case addressLine1 = "address_line1"
-        case addressLine2 = "address_line2"
-        case category, timezone
-        case resultType = "result_type"
-        case rank
-        case placeID = "place_id"
-        case postcode
-        case stateCode = "state_code"
-        case region
-        case stateCOG = "state_COG"
-        case departmentCOG = "department_COG"
-    }
+//    enum CodingKeys: String, CodingKey {
+//        case datasource, name
+//        case county
+//        case countryCode = "country_code"
+    //        case state, city, lon, lat, country
+//        case municipality, district, formatted
+//        case addressLine1 = "address_line1"
+//        case addressLine2 = "address_line2"
+//        case category, timezone
+//        case resultType = "result_type"
+//        case rank
+//        case placeID = "place_id"
+//        case postcode
+//        case stateCode = "state_code"
+//        case region
+//        case stateCOG = "state_COG"
+//        case departmentCOG = "department_COG"
+//    }
 }
 
 // MARK: - Datasource
@@ -71,7 +74,7 @@ struct Datasource: Codable {
 // MARK: - Rank
 struct Rank: Codable {
     let importance: Double
-    let confidence, confidenceCityLevel: Int
+    let confidence, confidenceCityLevel: Int?
     let matchType: String
 
     enum CodingKeys: String, CodingKey {
@@ -106,7 +109,7 @@ struct Timezone: Codable {
 // MARK: - Query
 struct Query: Codable {
     let text: String
-    let parsed: Parsed
+    let parsed: Parsed?
 }
 
 // MARK: - Parsed
@@ -119,12 +122,12 @@ struct Parsed: Codable {
     }
 }
 
-//MARK: - перевод CityData в CityModel
+// MARK: - перевод CityData в CityModel
 extension CityData {
     
     var domain: [CityModel] {
         
-        let unit = features.map { feature in
+        let unit = features?.map { feature in
             
             let city = feature.properties.city
             let state = feature.properties.state
@@ -132,13 +135,13 @@ extension CityData {
             let longtitude = feature.properties.lon
             let latitude = feature.properties.lat
             
-            return CityModel(city: city,
-                             state: state,
-                             country: country,
+            return CityModel(city: city ?? "",
+                             state: state ?? "",
+                             country: country ?? "",
                              longtitude: longtitude,
                              latitude: latitude)
         }
-        return unit
+        return unit?.filter({ $0.city != "" }) ?? []
     }
     
 }

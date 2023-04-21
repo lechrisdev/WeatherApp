@@ -35,8 +35,8 @@ class Router {
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
-    func showWeatherView() {
-        let vc = UIHostingController(rootView: WeatherView(router: self))
+    func showWeatherView(lon: Double, lat: Double) {
+        let vc = UIHostingController(rootView: WeatherView(router: self, lon: lon, lat: lat))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

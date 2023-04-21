@@ -9,18 +9,13 @@ import SwiftUI
 
 struct SearchScreenView: View {
     
-    //-----------------------------------------------
-    //ВРЕМЕННО, ЧТОБЫ ЗАПУСКАЛОСЬ ПРЕВЬЮ
-    let cities = [
-        CityModel(city: "Odesa", state: "Odesa Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5),
-        CityModel(city: "Kharkiv", state: "Kharkivs`ka Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5),
-        CityModel(city: "Odesa", state: "Odesa Oblast`", country: "Ukraine", longtitude: 30.0, latitude: 45.5)
-    ]
-    //-----------------------------------------------
+    @State var cities: [CityModel] = []
     
-    @State var searchText: String = ""
+    @State var searchText: String = "Оде"
     
     var router: Router
+    
+    let repo = Repository()
     
     init(router: Router) {
         self.router = router
@@ -33,6 +28,7 @@ struct SearchScreenView: View {
                 HStack(spacing: 3.5) {
 
                     TextFieldView(text: $searchText)
+                        .autocorrectionDisabled(true)
                     
                     Spacer()
                     
@@ -48,16 +44,18 @@ struct SearchScreenView: View {
                 }
                 .frame(height:  44)
 
-                CityCompletionView(cities: cities)
+                CityCompletionView(cities: cities, router: router)
                     .padding(.top, 15)
                 
                 Button {
-                    print("НАЖАЛАСЬ КНОПКА перехода на WeatherView")
-                    router.showWeatherView()
+                    Task {
+                        self.cities = await repo.searchCity(name: searchText)
+                    }
                 } label: {
-                    Text("ТЕСТОВАЯ КНОПКА ПЕРЕХОДА")
+                    Text("ПОИСК")
                 }
-                Text(searchText)
+                
+//                Text(searchText)
                 
             }
             .padding(.top, 12)
