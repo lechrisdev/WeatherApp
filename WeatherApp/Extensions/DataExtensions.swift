@@ -7,13 +7,16 @@
 
 import Foundation
 
-//MARK: - перевод любой Data в любую dataModel (generic)
+// MARK: - перевод любой Data в любую dataModel (generic)
 extension Data {
     
     func convertTo<SomeData: Decodable>(_ dataModel: SomeData.Type) -> SomeData? {
-        
-        let result = try? JSONDecoder().decode(dataModel, from: self)
-        
-        return result
+        do {
+            let result = try JSONDecoder().decode(dataModel, from: self)
+            return result
+        } catch let error {
+            print(error)
+            return nil
+        }
     }
 }

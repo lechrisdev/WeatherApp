@@ -23,6 +23,8 @@ struct InformationView: View {
             if let placemark = placemarks.first {
                 if let city = placemark.locality {
                     return city
+                } else if let name = placemark.name {
+                    return name
                 } else {
                     print("City not found")
                     return nil
@@ -65,7 +67,7 @@ struct InformationView: View {
                 WeekForecast(days: model.dailyWeather)
                     .padding(.top, 12)
                 
-                MapView(lat: 46.5, long: 30.7)
+                MapView(lat: model.latitude, long: model.longtitude)
                     .padding(.top, 12)
             }
 //            .padding(.horizontal, 24)
