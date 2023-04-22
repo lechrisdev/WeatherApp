@@ -9,15 +9,12 @@ import SwiftUI
 
 struct SearchScreenView: View {
     
-    @State var cities: [CityModel] = []
-    
-    @State var searchText: String = "Оде"
+    @ObservedObject var viewModel: SearchScreenViewModel
     
     var router: Router
-    
-    let repo = Repository()
-    
+        
     init(router: Router) {
+        viewModel = SearchScreenViewModel()
         self.router = router
     }
     
@@ -27,7 +24,7 @@ struct SearchScreenView: View {
             VStack(alignment: .leading) {
                 HStack(spacing: 3.5) {
 
-                    TextFieldView(text: $searchText)
+                    TextFieldView(text: $viewModel.searchText)
                         .autocorrectionDisabled(true)
                     
                     Spacer()
@@ -44,19 +41,14 @@ struct SearchScreenView: View {
                 }
                 .frame(height:  44)
 
-                CityCompletionView(cities: cities, router: router)
+                CityCompletionView(cities: viewModel.cities, router: router)
                     .padding(.top, 15)
                 
                 Button {
-                    Task {
-                        self.cities = await repo.searchCity(name: searchText)
-                    }
+                    viewModel.search()
                 } label: {
                     Text("ПОИСК")
                 }
-                
-//                Text(searchText)
-                
             }
             .padding(.top, 12)
             .padding(.horizontal, 24)

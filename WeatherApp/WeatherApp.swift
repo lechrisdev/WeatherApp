@@ -11,14 +11,12 @@ import SwiftUI
 struct WeatherApp: App {
     let persistenceController = PersistenceController.shared
     let router = Router()
-//    let api = API()
     
     var body: some Scene {
         WindowGroup {
             EmptyView()
                 .onAppear {
                     router.configureNavigationController()
-                    router.showMainScreen()
                 }
         }
     }

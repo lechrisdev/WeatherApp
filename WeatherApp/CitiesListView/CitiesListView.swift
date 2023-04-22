@@ -9,9 +9,12 @@ import SwiftUI
 
 struct CitiesListView: View {
     
+    @ObservedObject var viewModel: CitiesListViewModel
+    
     var router: Router
     
     init(router: Router) {
+        viewModel = CitiesListViewModel()
         self.router = router
     }
     
