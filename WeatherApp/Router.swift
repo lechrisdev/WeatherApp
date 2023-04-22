@@ -17,15 +17,11 @@ class Router {
     
     func configureNavigationController() {
         if navigationController == nil {
-            navigationController = UINavigationController(rootViewController: UIViewController())
+            let vc = UIHostingController(rootView: MainView(router: self))
+            navigationController = UINavigationController(rootViewController: vc)
             navigationController?.title = ""
             UIApplication.shared.windows.first?.rootViewController = navigationController
         }
-    }
-    
-    func showMainScreen() {
-        let vc = UIHostingController(rootView: MainView(router: self))
-        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func showSearchScreen() {
@@ -46,8 +42,11 @@ class Router {
     }
     
     func back(animated: Bool = true) {
-//        self.navigationController?.dismiss(animated: animated)
         self.navigationController?.popViewController(animated: animated)
+    }
+    
+    func backToRoot(animated: Bool = true) {
+        self.navigationController?.popToRootViewController(animated: animated)
     }
     
 }

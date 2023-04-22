@@ -9,16 +9,17 @@ import SwiftUI
 
 struct WeatherView: View {
     
-    let repo = Repository()
+    @ObservedObject var viewModel: WeatherViewModel
     
     let lon: Double
     let lat: Double
     
-    @State var model: WeatherModel?
+    @State var isAdded: Bool = false
     
     var router: Router
     
     init(router: Router, lon: Double, lat: Double) {
+        viewModel = WeatherViewModel()
         self.lon = lon
         self.lat = lat
         self.router = router
@@ -30,7 +31,7 @@ struct WeatherView: View {
             HStack {
                 Button {
                     print("Нажата кнопка НАЗАТТ")
-                    router.back()
+                    router.backToRoot()
                 } label: {
                     AppAssets.arrowBack.swiftUIImage
 //                        .frame(width: 40)
@@ -41,24 +42,30 @@ struct WeatherView: View {
                 
                 Button {
                     print("Нажата кнорка добавить")
-                    router.showCitiesList()
+                    withAnimation {
+                        isAdded.toggle()  //= true
+                    }
                     // ТУТ ДОЛЖНА ПОМЕНЯТЬСЯ КНОПКА, НА ЗЕЛЕНУЮ
                     
                 } label: {
                     HStack(spacing: 8) {
-                        Text("Add to list")
-                            .foregroundColor(Color.black)
-                        AppAssets.add.swiftUIImage
+                        Text(isAdded ? "Added to list" : "Add to list")
+                            .foregroundColor( isAdded ? Color.white : Color.black)
+                        if isAdded {
+                            AppAssets.done.swiftUIImage
+                        } else {
+                            AppAssets.add.swiftUIImage
+                        }
                     }
                     .padding(.all, 14)
-                } .roundedBackground()
+                } .roundedBackground(bgColor: isAdded ? AppAssets.green.swiftUIColor : AppAssets.lightGray.swiftUIColor)
                     
             }
 //            .padding(.top, 12)
             .frame(height: 44)
             
             ScrollView {
-                if let model {
+                if let model = viewModel.model {
                     InformationView(model: model)
                 }
             }
@@ -68,9 +75,7 @@ struct WeatherView: View {
         .padding(.top, 12)
         .padding(.horizontal, 24)
         .onAppear {
-            Task {
-                self.model = await repo.getWeather(lon: lon, lat: lat)
-            }
+            viewModel.getWeather(lon: lon, lat: lat)
         }
     }
 }
