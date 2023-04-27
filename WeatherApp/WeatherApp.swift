@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct WeatherApp: App {
-    let persistenceController = PersistenceController.shared
+
     let router = Router()
     
     var body: some Scene {

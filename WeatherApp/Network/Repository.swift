@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import MapKit
 
 class Repository {
+    
+    let persistence = Persistence()
     
     func searchCity(name: String) async -> [CityModel] {
         
@@ -25,14 +28,25 @@ class Repository {
     func getWeather(lon: Double, lat: Double) async -> WeatherModel? {
         
         var weather: WeatherModel?
-        
-                                        // ЗАГРУЗКА ПОГОДЫ ПО КООРДИНАТАМ
-        let data = await API.sendRequestData(request: Requests.getWeather(latitude: String(lat), longitude: String(lon)))
-
-        if let result = data?.convertTo(WeatherData.self) {
-            weather = result.domain
+                                    // ПРОВЕРКА, ЕСТЬ ЛИ В CORE DATA ПО КООРДИНАТАМ
+        if let savedData = persistence.loadWeather(by: CLLocationCoordinate2D(latitude: lat,
+                                                                              longitude: lon)) {
+            if let result = savedData.convertTo(WeatherData.self) {
+                weather = result.domain
+                print("Погода из Core Data")
+            }
+            return weather
+        } else {
+                                    // ЗАГРУЗКА ПОГОДЫ ПО КООРДИНАТАМ
+            let data = await API.sendRequestData(request: Requests.getWeather(latitude: String(lat), longitude: String(lon)))
+            
+            if let result = data?.convertTo(WeatherData.self) {
+                persistence.saveWeather(for: CLLocationCoordinate2D(latitude: lat, longitude: lon), data: data!)
+                weather = result.domain
+                print("Погода из интернета")
+            }
+            return weather
         }
-        return weather
     }
     
 }

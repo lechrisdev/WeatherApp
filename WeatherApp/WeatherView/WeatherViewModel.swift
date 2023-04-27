@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 class WeatherViewModel: ObservableObject {
     
@@ -13,10 +14,17 @@ class WeatherViewModel: ObservableObject {
     
     let repo = Repository()
     
+    let persistence = Persistence()
+    
     func getWeather(lon: Double, lat: Double) {
         Task {
             self.model = await repo.getWeather(lon: lon, lat: lat)
         }
+    }
+    
+    func saveToCoreData(lat: Double, lon: Double) {
+        persistence.saveNewCoordinate(for: CLLocationCoordinate2D(latitude: lat,
+                                                                  longitude: lon) )
     }
     
 }

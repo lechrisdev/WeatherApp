@@ -49,6 +49,9 @@ struct MainView: View {
         }
         .navigationBarHidden(true)
         .padding(.top, 12)
+        .onAppear {
+            viewModel.updateWeather()
+        }
         
     }
 }
