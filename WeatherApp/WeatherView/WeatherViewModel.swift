@@ -16,7 +16,7 @@ class WeatherViewModel: ObservableObject {
     
     let persistence = Persistence()
     
-    func getWeather(lon: Double, lat: Double) {
+    @MainActor func getWeather(lon: Double, lat: Double) {
         Task {
             self.model = await repo.getWeather(lon: lon, lat: lat)
         }
