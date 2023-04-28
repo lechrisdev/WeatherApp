@@ -12,7 +12,7 @@ struct SearchScreenView: View {
     @ObservedObject var viewModel: SearchScreenViewModel
     
     var router: Router
-        
+    
     init(router: Router) {
         viewModel = SearchScreenViewModel()
         self.router = router
@@ -23,7 +23,7 @@ struct SearchScreenView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(spacing: 3.5) {
-
+                    
                     TextFieldView(text: $viewModel.searchText)
                         .autocorrectionDisabled(true)
                     
@@ -40,24 +40,36 @@ struct SearchScreenView: View {
                     }
                 }
                 .frame(height:  44)
-
+                
                 CityCompletionView(cities: viewModel.cities, router: router)
                     .padding(.top, 15)
                 
-                Button {
-                    viewModel.search()
-                } label: {
-                    Text("ПОИСК")
-                }
+//                Button {
+//                    viewModel.search()
+//                } label: {
+//                    Text("ПОИСК")
+//                }
             }
             .padding(.top, 12)
             .padding(.horizontal, 24)
+            .onChange(of: viewModel.searchText, perform: { text in // ПОДПИСАЛИСЬ НА ИЗМЕНЕНИЯ В ПЕРЕМЕННОЙ ТЕКСТ ПОЛЯ
+                if text.count >= 3 {
+                    print(text)
+                    // СНАЧАЛА ОСТАНОВКА ВСЕХ ЗАПУЩЕННЫХ ТАЙМЕРОВ, ПОТОМ ЗАПУСК НОВОГО
+                    viewModel.startTimer(withTimeInterval: 1) {
+                        print("Таймер 1 сек прошел")
+                        // Вызвать функцию поиска
+                        viewModel.search()
+                    }
+
+                }
+            })
         }
     }
-}
-
-struct SearchScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchScreenView(router: Router())
+    
+    struct SearchScreenView_Previews: PreviewProvider {
+        static var previews: some View {
+            SearchScreenView(router: Router())
+        }
     }
 }
