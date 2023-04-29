@@ -43,14 +43,34 @@ struct CityCell: View {     // (1) ЯЧЕЙКА = ПРЯМОУГОЛЬНИК И 
                 router.showWeatherView(lon: model.longtitude, lat: model.latitude)
         }, label: {
             
-            Text("\(model.city) (\(model.state), \(model.country)")
-                .foregroundColor(.black)
-                .font(.system(size: 10))
-                .padding(.vertical, 8)
-                .padding(.horizontal, 18)
-                .roundedBackground(7)
-                .padding(.trailing, 10)
-                .frame(height: 31)
+//            Text("\(model.city) (", "\(model.state), ", "\(model.country))")
+//            Text("\(model.city)\(model.state != nil ? " (\(model.state), " + " (")\(model.country))")
+            HStack(spacing: 0) {
+                if model.city != "" {
+                    Text("\(model.city) (")
+                }
+                if model.state != "" {
+                    Text("\(model.state), ")
+                }
+                if model.country != "" {
+                    Text("\(model.country))")
+                }
+            }
+            .foregroundColor(.black)
+            .font(.system(size: 10))
+            .padding(.vertical, 8)
+            .padding(.horizontal, 18)
+            .roundedBackground(7)
+            .padding(.trailing, 10)
+            .frame(height: 31)
+//            Text("\(model.city) (\(model.state), \(model.country)")
+//                .foregroundColor(.black)
+//                .font(.system(size: 10))
+//                .padding(.vertical, 8)
+//                .padding(.horizontal, 18)
+//                .roundedBackground(7)
+//                .padding(.trailing, 10)
+//                .frame(height: 31)
         })
         .frame(height: 44)
         .roundedBackground(15)

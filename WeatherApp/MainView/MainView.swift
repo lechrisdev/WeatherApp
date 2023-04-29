@@ -27,7 +27,7 @@ struct MainView: View {
                     router.showSearchScreen()
                 }, onTapList: {
                     print("кнопка списка нажалась")
-                    router.showCitiesList()
+                    router.showCitiesList(models: viewModel.models)
                     
                 })
                 .padding(.horizontal, 24)

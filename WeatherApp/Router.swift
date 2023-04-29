@@ -36,8 +36,8 @@ class Router {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showCitiesList() {
-        let vc = UIHostingController(rootView: CitiesListView(router: self))
+    func showCitiesList(models: [WeatherModel]) {
+        let vc = UIHostingController(rootView: CitiesListView(router: self, models: models))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
