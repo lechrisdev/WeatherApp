@@ -91,6 +91,10 @@ class Persistence {
         return nil
     }
     
+//    func loadSavedCities() -> [CDWeatherData] {
+//        //
+//    }
+    
     func saveContext () {
         
         let context = persistentContainer.viewContext

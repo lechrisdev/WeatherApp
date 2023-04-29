@@ -11,7 +11,7 @@ class SearchScreenViewModel: ObservableObject {
     
     @Published var cities: [CityModel] = []
     
-    @Published var searchText: String = ""
+    @Published var searchText: String = "киі"
     
     private var timers: [Timer] = []
 

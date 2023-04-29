@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct CitiesListView: View {
     
@@ -13,9 +14,10 @@ struct CitiesListView: View {
     
     var router: Router
     
-    init(router: Router) {
+    init(router: Router, models: [WeatherModel]) {
         viewModel = CitiesListViewModel()
         self.router = router
+        self.viewModel.models = models
     }
     
     var body: some View {
@@ -30,14 +32,16 @@ struct CitiesListView: View {
             }
             
             ScrollView {
-                CityDetailView(cityName: "Odesa", temperature: 24, date: Date())
-                CityDetailView(cityName: "Kharkiv", temperature: 22, date: Date())
-                CityDetailView(cityName: "Ivanofrankivs`ka oblast`frffrrsssb dfs", temperature: 21, date: Date())
-                
                 // КОГДА БУДЕТ ФОР ИЧ - ТАМ ВЫСТАВИМ РАССТОЯНИЕ МЕЖДУ ЯЧЕЙКАМИ
-                    
+                ForEach(Array(viewModel.models.enumerated()), id: \.element) { index, weather in
+                    CityDetailView(coordinate: CLLocationCoordinate2D(latitude: weather.latitude,
+                                                                      longitude: weather.longtitude),
+                                   temperature: viewModel.models[index].temperature,
+                                   icon: viewModel.models[index].icon,
+                                   date: Date())
+                        .padding(.horizontal, 24)
+                }
             }.padding(.top, 24)
-            
         }
         .padding(.top, 12)
         .padding(.horizontal, 24)
@@ -46,6 +50,6 @@ struct CitiesListView: View {
 
 struct CitiesListView_Previews: PreviewProvider {
     static var previews: some View {
-        CitiesListView(router: Router())
+        CitiesListView(router: Router(), models: [])
     }
 }

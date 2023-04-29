@@ -43,8 +43,5 @@ class MainViewModel: ObservableObject {
                     self.models.append(weather)
                 }
             }
-    }
-
-//    In MainViewModel create a func for loading all saved cities from an array of coordinates
-    
+    }    
 }
