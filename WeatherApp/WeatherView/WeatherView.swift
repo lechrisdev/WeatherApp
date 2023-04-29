@@ -18,8 +18,8 @@ struct WeatherView: View {
     
     var router: Router
     
-    init(router: Router, lon: Double, lat: Double) {
-        viewModel = WeatherViewModel()
+    init(router: Router, viewModel: WeatherViewModel, lon: Double, lat: Double) {
+        self.viewModel = viewModel
         self.lon = lon
         self.lat = lat
         self.router = router
@@ -85,6 +85,10 @@ struct WeatherView: View {
 
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherView(router: Router(), lon: 0, lat: 0)
+        WeatherView(router: Router(),
+                    viewModel: WeatherViewModel(repo: RepositoryMock(),
+                                                persistence: PersistenceMock()),
+                    lon: 0,
+                    lat: 0)
     }
 }

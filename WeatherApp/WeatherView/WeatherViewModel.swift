@@ -12,9 +12,14 @@ class WeatherViewModel: ObservableObject {
     
     @Published var model: WeatherModel?
     
-    let repo = Repository()
+    let repo: RepositoryProtocol
     
-    let persistence = Persistence()
+    let persistence: PersistenceProtocol
+    
+    init(repo: RepositoryProtocol, persistence: PersistenceProtocol) {
+        self.repo = repo
+        self.persistence = persistence
+    }
     
     @MainActor func getWeather(lon: Double, lat: Double) {
         Task {

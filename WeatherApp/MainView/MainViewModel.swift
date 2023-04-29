@@ -12,13 +12,16 @@ class MainViewModel: ObservableObject {
     
     @Published var models: [WeatherModel] = []
     
-    let persistence = Persistence()
+    let persistence: PersistenceProtocol
     
     var arrayOfCoordinates: [CLLocationCoordinate2D] = []
     
-    let repo = Repository()
+    let repo: RepositoryProtocol
     
-    init() {}
+    init(repo: RepositoryProtocol, persistence : PersistenceProtocol) {
+        self.repo = repo
+        self.persistence = persistence
+    }
     
     func updateWeather() {
         models = []

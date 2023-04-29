@@ -9,7 +9,14 @@ import Foundation
 import CoreData
 import MapKit
 
-class Persistence {
+protocol PersistenceProtocol {
+    func loadWeatherCoordinates() -> [CLLocationCoordinate2D]
+    func saveNewCoordinate(for coordinate2D: CLLocationCoordinate2D)
+    func saveWeather(for coordinate2D: CLLocationCoordinate2D, data: Data)
+    func loadWeather(by coordinates: CLLocationCoordinate2D) -> Data?
+}
+
+class Persistence: PersistenceProtocol {
     
     private let model = "DataModel"
     
@@ -91,10 +98,6 @@ class Persistence {
         return nil
     }
     
-//    func loadSavedCities() -> [CDWeatherData] {
-//        //
-//    }
-    
     func saveContext () {
         
         let context = persistentContainer.viewContext
@@ -130,4 +133,29 @@ class Persistence {
         return context
     }
         
+}
+
+class PersistenceMock: PersistenceProtocol {
+    func loadWeatherCoordinates() -> [CLLocationCoordinate2D] {
+        [
+            CLLocationCoordinate2D(latitude: 20, longitude: 30),
+            CLLocationCoordinate2D(latitude: 30, longitude: 30),
+            CLLocationCoordinate2D(latitude: 40, longitude: 30),
+            CLLocationCoordinate2D(latitude: 10, longitude: 30)
+        ]
+    }
+    
+    func saveNewCoordinate(for coordinate2D: CLLocationCoordinate2D) {
+        //
+    }
+    
+    func saveWeather(for coordinate2D: CLLocationCoordinate2D, data: Data) {
+        //
+    }
+    
+    func loadWeather(by coordinates: CLLocationCoordinate2D) -> Data? {
+        nil
+    }
+    
+    
 }

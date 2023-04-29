@@ -12,10 +12,13 @@ class CitiesListViewModel: ObservableObject {
     
     @Published var models: [WeatherModel] = []
     
-    let persistence = Persistence()
+    let persistence: PersistenceProtocol
         
-    let repo = Repository()
+    let repo: RepositoryProtocol
         
-    init() {}
+    init(persistence: PersistenceProtocol, repo: RepositoryProtocol) {
+        self.repo = repo
+        self.persistence = persistence
+    }
     
 }

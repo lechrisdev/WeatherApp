@@ -13,8 +13,8 @@ struct SearchScreenView: View {
     
     var router: Router
     
-    init(router: Router) {
-        viewModel = SearchScreenViewModel()
+    init(router: Router, viewModel: SearchScreenViewModel) {
+        self.viewModel = viewModel
         self.router = router
     }
     
@@ -69,7 +69,8 @@ struct SearchScreenView: View {
     
     struct SearchScreenView_Previews: PreviewProvider {
         static var previews: some View {
-            SearchScreenView(router: Router())
+            SearchScreenView(router: Router(),
+                             viewModel: SearchScreenViewModel(repo: RepositoryMock()))
         }
     }
 }

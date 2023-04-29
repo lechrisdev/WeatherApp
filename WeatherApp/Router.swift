@@ -17,7 +17,8 @@ class Router {
     
     func configureNavigationController() {
         if navigationController == nil {
-            let vc = UIHostingController(rootView: MainView(router: self))
+            let vm = MainViewModel(repo: Repository(), persistence: Persistence())
+            let vc = UIHostingController(rootView: MainView(router: self, viewModel: vm))
             navigationController = UINavigationController(rootViewController: vc)
             navigationController?.title = ""
             UIApplication.shared.windows.first?.rootViewController = navigationController
@@ -25,19 +26,22 @@ class Router {
     }
     
     func showSearchScreen() {
-        let vc = UIHostingController(rootView: SearchScreenView(router: self))
+        let vm = SearchScreenViewModel(repo: Repository())
+        let vc = UIHostingController(rootView: SearchScreenView(router: self, viewModel: vm))
 //        vc.modalTransitionStyle = .crossDissolve
 //        vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func showWeatherView(lon: Double, lat: Double) {
-        let vc = UIHostingController(rootView: WeatherView(router: self, lon: lon, lat: lat))
+        let vm = WeatherViewModel(repo: Repository(), persistence: Persistence())
+        let vc = UIHostingController(rootView: WeatherView(router: self, viewModel: vm, lon: lon, lat: lat))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func showCitiesList(models: [WeatherModel]) {
-        let vc = UIHostingController(rootView: CitiesListView(router: self, models: models))
+        let vm = CitiesListViewModel(persistence: Persistence(), repo: Repository())
+        let vc = UIHostingController(rootView: CitiesListView(router: self, viewModel: vm, models: models))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
