@@ -29,11 +29,13 @@ struct CurrentTemperatureView: View {
                 Text(title)
                     .font(.system(size: 35))
                     .fontWeight(.semibold)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
                 if isLocal {
                     AppAssets.geo.swiftUIImage
                 }
             }
-            .frame(height: 20)
+//            .frame(height: 20)
             Text("\(temperature)°")
                 .font(.system(size: 70))
                 .fontWeight(.semibold)
@@ -45,7 +47,7 @@ struct CurrentTemperatureView: View {
 struct CurrentTemperatureView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            CurrentTemperatureView(title: "Odesa", icon: .cloudSun, isLocal: true, temperature: 42)
+            CurrentTemperatureView(title: "Odesatgrg grgrgrg rgrgrg rgrg", icon: .cloudSun, isLocal: true, temperature: 42)
             CurrentTemperatureView(title: "Kharkiv", icon: .sun, isLocal: false, temperature: 42)
             CurrentTemperatureView(title: "New York", icon: .cloudThunderbold, isLocal: true, temperature: 42)
         }

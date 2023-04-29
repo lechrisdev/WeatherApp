@@ -14,9 +14,9 @@ struct CitiesListView: View {
     
     var router: Router
     
-    init(router: Router, models: [WeatherModel]) {
-        viewModel = CitiesListViewModel()
+    init(router: Router, viewModel: CitiesListViewModel, models: [WeatherModel]) {
         self.router = router
+        self.viewModel = viewModel
         self.viewModel.models = models
     }
     
@@ -50,6 +50,7 @@ struct CitiesListView: View {
 
 struct CitiesListView_Previews: PreviewProvider {
     static var previews: some View {
-        CitiesListView(router: Router(), models: [])
+        let vm = CitiesListViewModel(persistence: PersistenceMock(), repo: RepositoryMock())
+        CitiesListView(router: Router(), viewModel: vm, models: [])
     }
 }

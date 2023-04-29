@@ -13,8 +13,8 @@ struct MainView: View {
     
     var router: Router
     
-    init(router: Router) {
-        viewModel = MainViewModel()
+    init(router: Router, viewModel: MainViewModel) {
+        self.viewModel = viewModel
         self.router = router
     }
     
@@ -58,6 +58,8 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(router: Router())
+        let vm = MainViewModel(repo: RepositoryMock(),
+                               persistence: PersistenceMock())
+        MainView(router: Router(), viewModel: vm)
     }
 }

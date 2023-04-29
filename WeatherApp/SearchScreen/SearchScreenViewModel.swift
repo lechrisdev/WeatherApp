@@ -15,7 +15,11 @@ class SearchScreenViewModel: ObservableObject {
     
     private var timers: [Timer] = []
 
-    let repo = Repository()
+    let repo : RepositoryProtocol
+    
+    init(repo: RepositoryProtocol) {
+        self.repo = repo
+    }
     
     @MainActor func search() {
         Task {

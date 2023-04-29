@@ -8,7 +8,12 @@
 import Foundation
 import MapKit
 
-class Repository {
+protocol RepositoryProtocol {
+    func searchCity(name: String) async -> [CityModel]
+    func getWeather(lon: Double, lat: Double) async -> WeatherModel?
+}
+
+class Repository: RepositoryProtocol {
     
     let persistence = Persistence()
     
@@ -49,4 +54,32 @@ class Repository {
         }
     }
     
+}
+
+class RepositoryMock: RepositoryProtocol {
+    func searchCity(name: String) async -> [CityModel] {
+        [
+            CityModel(city: "Los Angeles", state: "California", country: "USA", longtitude: 0, latitude: 0)
+        ]
+    }
+    
+    func getWeather(lon: Double, lat: Double) async -> WeatherModel? {
+        WeatherModel(icon: .drizzleFreezing,
+                     isLocal: true,
+                     temperature: 35,
+                     currentTime: Date(),
+                     uvIndex: 5,
+                     rainProbability: 15,
+                     airQuality: 5,
+                     hourlyWeather: [HourWeather(temperature: 30,
+                                                 icon: .drizzleFreezing,
+                                                 time: "10.00 am")],
+                     dailyWeather: [DayWeather(dayOfWeek: "monday",
+                                               icon: .drizzle,
+                                               probability: 10,
+                                               dayTemp: 30,
+                                               nightTemp: 20)],
+                     latitude: 0,
+                     longtitude: 0)
+    }
 }
