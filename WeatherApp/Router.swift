@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import Swinject
 
 class Router {
         
@@ -17,8 +18,9 @@ class Router {
     
     func configureNavigationController() {
         if navigationController == nil {
-            let vm = MainViewModel(repo: Repository(), persistence: Persistence())
-            let vc = UIHostingController(rootView: MainView(router: self, viewModel: vm))
+            let vm = Container.shared.resolve(MainViewModel.self)!
+            let vc = UIHostingController(rootView: MainView(router: self,
+                                                            viewModel: vm))
             navigationController = UINavigationController(rootViewController: vc)
             navigationController?.title = ""
             UIApplication.shared.windows.first?.rootViewController = navigationController
@@ -26,22 +28,28 @@ class Router {
     }
     
     func showSearchScreen() {
-        let vm = SearchScreenViewModel(repo: Repository())
-        let vc = UIHostingController(rootView: SearchScreenView(router: self, viewModel: vm))
+        let vm = Container.shared.resolve(SearchScreenViewModel.self)!
+        let vc = UIHostingController(rootView: SearchScreenView(router: self,
+                                                                viewModel: vm))
 //        vc.modalTransitionStyle = .crossDissolve
 //        vc.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func showWeatherView(lon: Double, lat: Double) {
-        let vm = WeatherViewModel(repo: Repository(), persistence: Persistence())
-        let vc = UIHostingController(rootView: WeatherView(router: self, viewModel: vm, lon: lon, lat: lat))
+        let vm = Container.shared.resolve(WeatherViewModel.self)!
+        let vc = UIHostingController(rootView: WeatherView(router: self,
+                                                           viewModel: vm,
+                                                           lon: lon,
+                                                           lat: lat))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func showCitiesList(models: [WeatherModel]) {
-        let vm = CitiesListViewModel(persistence: Persistence(), repo: Repository())
-        let vc = UIHostingController(rootView: CitiesListView(router: self, viewModel: vm, models: models))
+        let vm = Container.shared.resolve(CitiesListViewModel.self)!
+        let vc = UIHostingController(rootView: CitiesListView(router: self,
+                                                              viewModel: vm,
+                                                              models: models))
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

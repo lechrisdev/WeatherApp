@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import Swinject
 
 @main
 struct WeatherApp: App {
-
-    let router = Router()
     
     var body: some Scene {
         WindowGroup {
             EmptyView()
                 .onAppear {
-                    router.configureNavigationController()
+                    _ = Assembler([AppAssembly()],
+                                  container: Container.shared)
+                    Container.shared.resolve(Router.self)!.configureNavigationController()
                 }
         }
     }

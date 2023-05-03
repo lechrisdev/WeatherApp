@@ -39,9 +39,9 @@ struct CitiesListView: View {
                                    temperature: viewModel.models[index].temperature,
                                    icon: viewModel.models[index].icon,
                                    date: Date())
-                        .padding(.horizontal, 24)
                 }
-            }.padding(.top, 24)
+            }
+            .padding(.top, 24)
         }
         .padding(.top, 12)
         .padding(.horizontal, 24)

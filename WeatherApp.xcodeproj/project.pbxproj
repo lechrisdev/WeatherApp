@@ -47,6 +47,8 @@
 		85E35E7829F3FA270095FF08 /* CitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E7729F3FA270095FF08 /* CitiesListViewModel.swift */; };
 		85E35E7D29F6F5050095FF08 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E7C29F6F5040095FF08 /* Persistence.swift */; };
 		85E35E8029F7CF5D0095FF08 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E7E29F7CF5D0095FF08 /* DataModel.xcdatamodeld */; };
+		85E35E832A0153570095FF08 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E822A0153570095FF08 /* AppAssembly.swift */; };
+		85E35E852A0154E60095FF08 /* ContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E842A0154E60095FF08 /* ContainerExtension.swift */; };
 		85ECB2F929D65FBE00DCCD59 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECB2F829D65FBE00DCCD59 /* InformationView.swift */; };
 		85ECB2FE29D9A27D00DCCD59 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECB2FD29D9A27D00DCCD59 /* WeatherModel.swift */; };
 		85ECB30029DB15C500DCCD59 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECB2FF29DB15C500DCCD59 /* MainViewModel.swift */; };
@@ -118,6 +120,8 @@
 		85E35E7729F3FA270095FF08 /* CitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewModel.swift; sourceTree = "<group>"; };
 		85E35E7C29F6F5040095FF08 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		85E35E7F29F7CF5D0095FF08 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		85E35E822A0153570095FF08 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
+		85E35E842A0154E60095FF08 /* ContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerExtension.swift; sourceTree = "<group>"; };
 		85ECB2F829D65FBE00DCCD59 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		85ECB2FD29D9A27D00DCCD59 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		85ECB2FF29DB15C500DCCD59 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				85400A5D29CD99F4008BD1E7 /* ViewExtensions.swift */,
 				85400A5F29CDB4C6008BD1E7 /* DateExtensions.swift */,
 				85E35E6F29EEFAB00095FF08 /* DataExtensions.swift */,
+				85E35E842A0154E60095FF08 /* ContainerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 		854E253229C857C000E826FE /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				85E35E812A01531B0095FF08 /* DI */,
 				85E35E7B29F6F4E40095FF08 /* Persistence */,
 				85E35E6729E6FF040095FF08 /* Network */,
 				85E35E6429E6EBD20095FF08 /* Models */,
@@ -346,6 +352,14 @@
 				85E35E7E29F7CF5D0095FF08 /* DataModel.xcdatamodeld */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		85E35E812A01531B0095FF08 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				85E35E822A0153570095FF08 /* AppAssembly.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		85ECB2FA29D6629D00DCCD59 /* InformationView */ = {
@@ -690,6 +704,7 @@
 				85E35E6E29ED9FB90095FF08 /* CityModel.swift in Sources */,
 				85400A6629D2E68A008BD1E7 /* TextFieldView.swift in Sources */,
 				8534612929D6453400EB0FAB /* WeekForecast.swift in Sources */,
+				85E35E832A0153570095FF08 /* AppAssembly.swift in Sources */,
 				85E35E6929E6FF2A0095FF08 /* API.swift in Sources */,
 				85E35E6B29E82CF70095FF08 /* CityData.swift in Sources */,
 				85400A5329C9E1EB008BD1E7 /* Assets.swift in Sources */,
@@ -714,6 +729,7 @@
 				85C15A1C29D46481009CDE8B /* CitiesListView.swift in Sources */,
 				85E35E8029F7CF5D0095FF08 /* DataModel.xcdatamodeld in Sources */,
 				85400A5729C9F220008BD1E7 /* Icon.swift in Sources */,
+				85E35E852A0154E60095FF08 /* ContainerExtension.swift in Sources */,
 				85ECB30029DB15C500DCCD59 /* MainViewModel.swift in Sources */,
 				85400A5229C9E1EB008BD1E7 /* Strings.swift in Sources */,
 			);

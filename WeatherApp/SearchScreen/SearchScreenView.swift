@@ -43,12 +43,6 @@ struct SearchScreenView: View {
                 
                 CityCompletionView(cities: viewModel.cities, router: router)
                     .padding(.top, 15)
-                
-//                Button {
-//                    viewModel.search()
-//                } label: {
-//                    Text("ПОИСК")
-//                }
             }
             .padding(.top, 12)
             .padding(.horizontal, 24)
