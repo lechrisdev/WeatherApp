@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import Swinject
 
 protocol RepositoryProtocol {
     func searchCity(name: String) async -> [CityModel]
@@ -15,7 +16,7 @@ protocol RepositoryProtocol {
 
 class Repository: RepositoryProtocol {
     
-    let persistence = Persistence()
+    let persistence = Container.shared.resolve(Persistence.self)!
     
     func searchCity(name: String) async -> [CityModel] {
         

@@ -13,7 +13,7 @@ struct CityDetailView: View {
     @State var cityName: String = ""
     var temperature: Int
     let icon: Icon
-    var date: Date //String
+    var date: Date
     var coordinate: CLLocationCoordinate2D
     
     func getCityName(coordinates: CLLocationCoordinate2D) async -> String? {

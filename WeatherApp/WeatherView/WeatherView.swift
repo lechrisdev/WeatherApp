@@ -34,7 +34,6 @@ struct WeatherView: View {
                     router.backToRoot()
                 } label: {
                     AppAssets.arrowBack.swiftUIImage
-//                        .frame(width: 40)
                         .frame(height: 44)
                 }
 
@@ -42,16 +41,13 @@ struct WeatherView: View {
                 
                 Button {
                     print("Нажата кнорка добавить")
-                    
-                    // СОХРАНИТЬ В CORE DATA
+                                                            // СОХРАНИТЬ В CORE DATA
                     viewModel.saveToCoreData(lat: lat, lon: lon)
                     withAnimation {
                         isAdded.toggle()  //= true
                     }
-                    // ТУТ ДОЛЖНА ПОМЕНЯТЬСЯ КНОПКА, НА ЗЕЛЕНУЮ
-                    
                 } label: {
-                    HStack(spacing: 8) {
+                    HStack(spacing: 8) {                    // КНОПКА МЕНЯЕТСЯ НА ЗЕЛЕНУЮ
                         Text(isAdded ? "Added to list" : "Add to list")
                             .foregroundColor( isAdded ? Color.white : Color.black)
                         if isAdded {
@@ -64,7 +60,6 @@ struct WeatherView: View {
                 } .roundedBackground(bgColor: isAdded ? AppAssets.green.swiftUIColor : AppAssets.lightGray.swiftUIColor)
                     
             }
-//            .padding(.top, 12)
             .frame(height: 44)
             
             ScrollView {
