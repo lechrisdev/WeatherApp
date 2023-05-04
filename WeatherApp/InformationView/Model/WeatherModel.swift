@@ -25,5 +25,6 @@ struct WeatherModel: Hashable {
                 // MapView
     let latitude: Double
     let longtitude: Double
+    let timezone: String
     
 }

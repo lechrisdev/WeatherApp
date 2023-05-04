@@ -103,10 +103,10 @@ struct HourlyUnits: Codable {
     }
 }
 
-//MARK: - перевод WeatherData в WeatherModel
+// MARK: - перевод WeatherData в WeatherModel
 extension WeatherData {
     var domain: WeatherModel {
-        
+        print(">>>>>>> TIMEZONE", timezone, timezoneAbbreviation)
         let hourlyWeather = hourly.time.enumerated().map { index, time in
                 let temperature = hourly.temperature2M[index]
                 let weatherCode = hourly.weathercode[index]
@@ -131,6 +131,9 @@ extension WeatherData {
                                   nightTemp: Int(nightTemp))
         }
         
+        let components = timezoneAbbreviation.components(separatedBy: " ")
+        let timeZone = components.last
+        
         return WeatherModel(icon: Icon(weatherId: currentWeather.weathercode),
                             isLocal: false,
                             temperature: Int(currentWeather.temperature),
@@ -141,6 +144,7 @@ extension WeatherData {
                             hourlyWeather: hourlyWeather,
                             dailyWeather: dailyWeather,
                             latitude: latitude,
-                            longtitude: longitude)
+                            longtitude: longitude,
+                            timezone: timeZone ?? "")
     }
 }

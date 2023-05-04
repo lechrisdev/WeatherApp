@@ -36,10 +36,14 @@ enum DateStringStyle {
 
 extension Date {
     
-    func toString(style: DateStringStyle) -> String {
+    func toString(style: DateStringStyle, timezone: TimeZone? = nil) -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = .current
+        if let timezone {
+            dateFormatter.timeZone = timezone
+        }
+        
         
         switch style {
         case .amPm:

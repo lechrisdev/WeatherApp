@@ -81,6 +81,7 @@ class RepositoryMock: RepositoryProtocol {
                                                dayTemp: 30,
                                                nightTemp: 20)],
                      latitude: 0,
-                     longtitude: 0)
+                     longtitude: 0,
+                     timezone: "EDT")
     }
 }
