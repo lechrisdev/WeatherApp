@@ -16,21 +16,62 @@ struct HourWeather: Hashable {
 // ВЬЮ, КОТОРАЯ ПОКАЗЫВАЕТ ДОХУЛИАРД HourCell ОДНОВРЕМЕННО. КАКИМИ ДАННЫМИ ОНО ИХ ЗАПОЛНЯЕТ? ТЕМИ, КОТОРЫХ ДОХУЛИАРД!
 struct HourlyWeather: View {
     
-    let hours: [HourWeather] // ДАННЫЕ О ПОГОДЕ
+    @State var hours: [HourWeather] // ДАННЫЕ О ПОГОДЕ
+    let timezone: String
+    
+    func isCurrentTime(time: String) -> Bool {
+        var calendar = Calendar.current
+        let timezone = TimeZone(abbreviation: timezone)
+        calendar.timeZone = timezone!
+        var minutes = String(calendar.component(Calendar.Component.minute, from: Date()))
+        if minutes.count == 1 {
+            minutes = "0" + minutes
+        }
+        let nowDate = calendar.dateComponents(in: timezone!, from: Date()).date!
+        let nowDateString = nowDate.toString(style: .amPm, timezone: timezone)
+        let nowDateStringZeroMinutes = nowDateString.replacingOccurrences(of: String(minutes), with: "00")
+
+        return time == nowDateStringZeroMinutes
+    }
+    
+    func filterWeather() {
+        guard let currentTimeIndex = hours.firstIndex(where: { isCurrentTime(time: $0.time) }) else { return }
+        var firstRange = 0
+        var lastRange = hours.count - 1
+        if currentTimeIndex >= 6 {
+            firstRange = currentTimeIndex - 6
+        }
+        lastRange = currentTimeIndex + 24
+        let slice = hours[firstRange...lastRange]
+        self.hours = Array(slice)
+    }
     
     var body: some View {
- 
+        ScrollViewReader { reader in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(Array(hours), id: \.self) { hour in
                         
-                            // СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
-                        HourCell(temperature: hour.temperature,
-                                 icon: hour.icon,
-                                 time: hour.time)
+                        // СОЗДАЕМ ЯЧЕЙКУ С ДАННЫМИ О ПОГОДЕ
+                        ZStack {
+                            Color.black.opacity(isCurrentTime(time: hour.time) ? 0.05 : 0)
+                                .blur(radius: 15)
+                            HourCell(temperature: hour.temperature,
+                                     icon: hour.icon,
+                                     time: hour.time)
+                            .id(isCurrentTime(time: hour.time) ? 1 : 0)
+                        }
+                    }
+                }.onAppear {
+                    filterWeather()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        withAnimation {
+                            reader.scrollTo(1, anchor: .leading)
+                        }
                     }
                 }
-            }.padding(.horizontal, 16)
+            }
+        }
     }
 }
 
@@ -79,6 +120,7 @@ struct HourlyWeather_Previews: PreviewProvider {
         ]
         
         // ЧТО ХОЧЕТ ОТ НАС ЭТА ПОЕБЕНЬ? ДОХУЛИАРД ДАННЫХ О ПОГОДЕ ПОЧАСОВО!
-        HourlyWeather(hours: hours)
+        HourlyWeather(hours: hours,
+                      timezone: "EDT")
     }
 }

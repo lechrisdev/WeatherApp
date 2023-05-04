@@ -54,12 +54,14 @@ struct InformationView: View {
                                        icon: model.icon,
                                        isLocal: model.isLocal,
                                        temperature: model.temperature)
-                DetailsView(time: Date().toString(style: .amPm),
+                let timezone = TimeZone(abbreviation: model.timezone)
+                DetailsView(time: Date().toString(style: .amPm, timezone: timezone),
                             uv: model.uvIndex,
                             rain: model.rainProbability,
                             aq: model.airQuality)
                 .roundedBackground()
-                HourlyWeather(hours: model.hourlyWeather)
+                HourlyWeather(hours: model.hourlyWeather,
+                              timezone: model.timezone)
                     .roundedBackground()
                     .padding(.top, 12)
                 
@@ -113,7 +115,8 @@ struct InformationView_Previews: PreviewProvider {
                                  airQuality: 80,
                                  hourlyWeather: hours,
                                  dailyWeather: days,
-                                 latitude: 46.5, longtitude: 30.7)
+                                 latitude: 46.5, longtitude: 30.7,
+                                 timezone: "EDT")
         
         InformationView(model: model)
     }
