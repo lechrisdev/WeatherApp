@@ -41,7 +41,7 @@ struct HourlyWeather: View {
         if currentTimeIndex >= 6 {
             firstRange = currentTimeIndex - 6
         }
-        lastRange = currentTimeIndex + 10
+        lastRange = currentTimeIndex + 24
         let slice = hours[firstRange...lastRange]
         self.hours = Array(slice)
     }
