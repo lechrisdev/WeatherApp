@@ -16,10 +16,12 @@ struct CityDetailView: View {
     var date: Date
     var coordinate: CLLocationCoordinate2D
     
+    var onTapDelete: (CLLocationCoordinate2D) -> Void
+    
     func getCityName(coordinates: CLLocationCoordinate2D) async -> String? {
         let geocoder = CLGeocoder()
-        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
-        
+        let location = CLLocation(latitude: coordinates.latitude,
+                                  longitude: coordinates.longitude)
         do {
             let placemarks = try await geocoder.reverseGeocodeLocation(location)
             if let placemark = placemarks.first {
@@ -40,11 +42,16 @@ struct CityDetailView: View {
         return nil
     }
     
-    init(coordinate: CLLocationCoordinate2D, temperature: Int, icon: Icon, date: Date) {
+    init(coordinate: CLLocationCoordinate2D,
+         temperature: Int,
+         icon: Icon,
+         date: Date,
+         onTapDelete: @escaping (CLLocationCoordinate2D) -> Void) {
         self.coordinate = coordinate
         self.temperature = temperature
         self.icon = icon
         self.date = date
+        self.onTapDelete = onTapDelete
     }
     
     var body: some View {
@@ -86,12 +93,18 @@ struct CityDetailView: View {
                     
                 }
                 
-                AppAssets.trash.swiftUIImage
-                    .padding(.top, 12)
-                    .padding(.trailing, 12)
-                
+                // удаление при нажатии на корзинку - кнопка
+                Button(
+                    action: {
+                        print("кнопка удаления работает")
+                        // удаление из core data!!!
+                        onTapDelete(coordinate)
+                }, label: {
+                    AppAssets.trash.swiftUIImage
+                        .padding(.top, 12)
+                        .padding(.trailing, 12)
+                })
             }
-            
         }
         .onAppear {
             Task {
@@ -100,7 +113,6 @@ struct CityDetailView: View {
                 }
             }
         }
-//        .frame(height: 140)
         .roundedBackground()
     }
 }
@@ -110,6 +122,6 @@ struct CityDetailView_Previews: PreviewProvider {
         CityDetailView(coordinate: CLLocationCoordinate2D(latitude: 30, longitude: 30),
                        temperature: 25,
                        icon: .drizzleFreezing,
-                       date: Date())
+                       date: Date(), onTapDelete: {_ in})
     }
 }

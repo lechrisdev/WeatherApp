@@ -14,6 +14,7 @@ protocol PersistenceProtocol {
     func saveNewCoordinate(for coordinate2D: CLLocationCoordinate2D)
     func saveWeather(for coordinate2D: CLLocationCoordinate2D, data: Data)
     func loadWeather(by coordinates: CLLocationCoordinate2D) -> Data?
+    func deleteWeather(for coordinate2D: CLLocationCoordinate2D) -> Bool
 }
 
 class Persistence: PersistenceProtocol {
@@ -70,6 +71,57 @@ class Persistence: PersistenceProtocol {
             print("⛔️⛔️⛔️⛔️⛔️", error)
         }
 
+    }
+    
+    // УДАЛЕНИЕ
+    func deleteWeather(for coordinate2D: CLLocationCoordinate2D) -> Bool {
+
+        if let element1 = searchElementWeatherCoordinate(for: coordinate2D),
+           let element2 =  searchElementCDWeatherData(for: coordinate2D) {
+            
+            do {
+                context.delete(element1)
+                context.delete(element2)
+                try context.save()
+                return true
+            } catch {
+                print("⛔️⛔️⛔️⛔️⛔️", "Error deleting object: \(error.localizedDescription)")
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    private func searchElementWeatherCoordinate(for coordinate2D: CLLocationCoordinate2D) -> WeatherCoordinate? {
+//        print("🤡",FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first)
+        let request: NSFetchRequest<WeatherCoordinate> = WeatherCoordinate.fetchRequest()
+        let predicate1 = NSPredicate(format: "lat == %@", NSNumber(value: coordinate2D.latitude))
+        let predicate2 = NSPredicate(format: "lon == %@", NSNumber(value: coordinate2D.longitude))
+        request.predicate = NSCompoundPredicate(type: .and, subpredicates: [predicate1, predicate2])
+
+        do {
+            guard let response = try context.fetch(request).first else { return nil }
+            return response
+        } catch {
+            print("Error ElementForDeleting from context \(error)")
+        }
+        return nil
+    }
+    
+    private func searchElementCDWeatherData(for coordinate2D: CLLocationCoordinate2D) -> CDWeatherData? {
+        let request: NSFetchRequest<CDWeatherData> = CDWeatherData.fetchRequest()
+        let predicate1 = NSPredicate(format: "latitude == %@", NSNumber(value: coordinate2D.latitude))
+        let predicate2 = NSPredicate(format: "longitude == %@", NSNumber(value: coordinate2D.longitude))
+        request.predicate = NSCompoundPredicate(type: .and, subpredicates: [predicate1, predicate2])
+        
+        do {
+            guard let response = try context.fetch(request).first else { return nil }
+            return response
+        } catch {
+            print("Error ElementForDeleting from context \(error)")
+        }
+        return nil
     }
     
     func loadWeather(by coordinates: CLLocationCoordinate2D) -> Data? {
@@ -157,5 +209,6 @@ class PersistenceMock: PersistenceProtocol {
         nil
     }
     
+    func deleteWeather(for coordinate2D: CLLocationCoordinate2D) -> Bool { true }
     
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 class CitiesListViewModel: ObservableObject {
     
@@ -21,4 +22,12 @@ class CitiesListViewModel: ObservableObject {
         self.persistence = persistence
     }
     
+    func deleteCity(coordinate: CLLocationCoordinate2D) {
+        if persistence.deleteWeather(for: coordinate) {
+            guard let index = models.firstIndex(where: { $0.latitude == coordinate.latitude }) else { return }
+            withAnimation {
+                models.remove(at: index)
+            }
+        }
+    }
 }

@@ -42,7 +42,9 @@ struct WeatherView: View {
                 Button {
                     print("Нажата кнорка добавить")
                                                             // СОХРАНИТЬ В CORE DATA
-                    viewModel.saveToCoreData(lat: lat, lon: lon)
+                    guard let latitude = viewModel.model?.latitude,
+                            let longitude = viewModel.model?.longtitude else { return }
+                    viewModel.saveToCoreData(lat: latitude, lon: longitude)
                     withAnimation {
                         isAdded.toggle()  //= true
                     }
