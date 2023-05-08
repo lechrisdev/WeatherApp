@@ -29,7 +29,9 @@ struct DetailsView: View {
             Spacer()
             VerticalStack(title: "% " + AppLocalization.Details.rain, value: "\(String(rain)) %")
             Spacer()
-            VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
+            VerticalStack(title: AppLocalization.Details.aq, value: String(90))
+            // ВРЕМЕННО ЗАХАРДКОДИЛА ЗНАЧЕНИЕ
+//            VerticalStack(title: AppLocalization.Details.aq, value: String(aq))
         }
         .padding(.all, 18)
     }

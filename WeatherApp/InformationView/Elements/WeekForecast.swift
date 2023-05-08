@@ -70,6 +70,7 @@ struct DailyCell: View {
                 .font(.system(size: 15))
                 .foregroundColor(AppAssets.lightBlue.swiftUIColor)
                 .frame(minWidth: 70, alignment: .leading)
+                .opacity(probability >= 10 ? 1 : 0)
             
             Spacer()
             
