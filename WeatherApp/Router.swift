@@ -20,7 +20,8 @@ class Router {
         if navigationController == nil {
             let vm = Container.shared.resolve(MainViewModel.self)!
             let vc = UIHostingController(rootView: MainView(router: self,
-                                                            viewModel: vm))
+                                                            viewModel: vm,
+                                                            locationManager: Container.shared.resolve(LocationManager.self)!))
             navigationController = UINavigationController(rootViewController: vc)
             navigationController?.title = ""
             UIApplication.shared.windows.first?.rootViewController = navigationController
