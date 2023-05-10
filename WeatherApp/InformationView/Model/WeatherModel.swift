@@ -11,7 +11,7 @@ struct WeatherModel: Hashable {
     
                 // CurrentTemperatureView
     let icon: Icon
-    let isLocal: Bool
+    var isLocal: Bool
     let temperature: Int
                 // DetailsView
     let currentTime: Date

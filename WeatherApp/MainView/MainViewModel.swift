@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import SwiftUI
 
 class MainViewModel: ObservableObject {
     
@@ -28,6 +29,24 @@ class MainViewModel: ObservableObject {
         arrayOfCoordinates = []
         arrayOfCoordinates = persistence.loadWeatherCoordinates()
         loadArrayOfCities()
+    }
+    
+    func loadLocalWeather(coordinates2D: CLLocationCoordinate2D) {
+        if models.allSatisfy({ $0.isLocal == false }) {
+            Task {
+                if var weather = await repo.getWeather(lon: coordinates2D.longitude,
+                                                       lat: coordinates2D.latitude) {
+                    weather.isLocal = true
+                    let weatherLocal = weather
+                    DispatchQueue.main.async {
+                        var modelsWithCurrent: [WeatherModel] = []
+                        modelsWithCurrent.append(weatherLocal)
+                        modelsWithCurrent.append(contentsOf: self.models)
+                        self.models = modelsWithCurrent
+                    }
+                }
+            }
+        }
     }
     
     private func loadArrayOfCities() {

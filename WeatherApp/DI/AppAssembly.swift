@@ -27,6 +27,11 @@ class AppAssembly: Assembly {
         }
         .inObjectScope(.container)
         
+        container.register(LocationManager.self) { _ in
+            LocationManager()
+        }
+        .inObjectScope(.container)
+        
         // MARK: - ViewModels
         
         container.register(MainViewModel.self, factory: { container in

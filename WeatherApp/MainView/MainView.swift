@@ -10,11 +10,13 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject var viewModel: MainViewModel
-    
+    @ObservedObject var locationManager: LocationManager
+
     var router: Router
     
-    init(router: Router, viewModel: MainViewModel) {
+    init(router: Router, viewModel: MainViewModel, locationManager: LocationManager) {
         self.viewModel = viewModel
+        self.locationManager = locationManager
         self.router = router
     }
     
@@ -52,7 +54,13 @@ struct MainView: View {
         .onAppear {
             viewModel.updateWeather()
         }
-        
+//        .onReceive(viewModel.locationManager.location.publisher, perform: { location in
+//            print("SLOVO 2", location)
+//        })
+        .onChange(of: locationManager.location) { location in
+            viewModel.loadLocalWeather(coordinates2D: location.coordinate)
+            print("SLOVO", location)
+        }
     }
 }
 
@@ -60,6 +68,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         let vm = MainViewModel(repo: RepositoryMock(),
                                persistence: PersistenceMock())
-        MainView(router: Router(), viewModel: vm)
+        MainView(router: Router(), viewModel: vm, locationManager: LocationManager())
     }
 }

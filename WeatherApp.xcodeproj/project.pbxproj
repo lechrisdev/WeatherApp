@@ -49,6 +49,7 @@
 		85E35E8029F7CF5D0095FF08 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E7E29F7CF5D0095FF08 /* DataModel.xcdatamodeld */; };
 		85E35E832A0153570095FF08 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E822A0153570095FF08 /* AppAssembly.swift */; };
 		85E35E852A0154E60095FF08 /* ContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E842A0154E60095FF08 /* ContainerExtension.swift */; };
+		85E35E872A09AC630095FF08 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E35E862A09AC630095FF08 /* LocationManager.swift */; };
 		85ECB2F929D65FBE00DCCD59 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECB2F829D65FBE00DCCD59 /* InformationView.swift */; };
 		85ECB2FE29D9A27D00DCCD59 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECB2FD29D9A27D00DCCD59 /* WeatherModel.swift */; };
 		85ECB30029DB15C500DCCD59 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECB2FF29DB15C500DCCD59 /* MainViewModel.swift */; };
@@ -122,6 +123,7 @@
 		85E35E7F29F7CF5D0095FF08 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		85E35E822A0153570095FF08 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		85E35E842A0154E60095FF08 /* ContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerExtension.swift; sourceTree = "<group>"; };
+		85E35E862A09AC630095FF08 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		85ECB2F829D65FBE00DCCD59 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		85ECB2FD29D9A27D00DCCD59 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		85ECB2FF29DB15C500DCCD59 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				85E35E6729E6FF040095FF08 /* Network */,
 				85E35E6429E6EBD20095FF08 /* Models */,
 				85E35E6229DD8E4E0095FF08 /* Router.swift */,
+				85E35E862A09AC630095FF08 /* LocationManager.swift */,
 				85400A5C29CD99C6008BD1E7 /* Extensions */,
 				85400A4C29C9DDCE008BD1E7 /* Localizable.strings */,
 				85400A4F29C9E13E008BD1E7 /* SwiftGen */,
@@ -731,6 +734,7 @@
 				85400A5729C9F220008BD1E7 /* Icon.swift in Sources */,
 				85E35E852A0154E60095FF08 /* ContainerExtension.swift in Sources */,
 				85ECB30029DB15C500DCCD59 /* MainViewModel.swift in Sources */,
+				85E35E872A09AC630095FF08 /* LocationManager.swift in Sources */,
 				85400A5229C9E1EB008BD1E7 /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -906,6 +910,7 @@
 				DEVELOPMENT_TEAM = NWJQXY2934;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -936,6 +941,7 @@
 				DEVELOPMENT_TEAM = NWJQXY2934;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
