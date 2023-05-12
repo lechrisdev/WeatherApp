@@ -29,7 +29,7 @@ struct MainView: View {
                     router.showSearchScreen()
                 }, onTapList: {
                     print("кнопка списка нажалась")
-                    router.showCitiesList(models: viewModel.models)
+                    router.showCitiesList(models: viewModel.models.filter({ $0.isLocal == false }) )
                     
                 })
                 .padding(.horizontal, 24)
@@ -52,7 +52,13 @@ struct MainView: View {
         .navigationBarHidden(true)
         .padding(.top, 12)
         .onAppear {
-            viewModel.updateWeather()
+            print(">>>>>> locationManager.location.coordinate.latitude", locationManager.location.coordinate.latitude)
+            if locationManager.location.coordinate.latitude != 0.0 {
+                viewModel.updateWeather()
+                viewModel.loadLocalWeather(coordinates2D: locationManager.location.coordinate)
+            } else {
+                viewModel.updateWeather()
+            }
         }
 //        .onReceive(viewModel.locationManager.location.publisher, perform: { location in
 //            print("SLOVO 2", location)

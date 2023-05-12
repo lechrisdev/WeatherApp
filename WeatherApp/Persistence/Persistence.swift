@@ -94,7 +94,7 @@ class Persistence: PersistenceProtocol {
     }
     
     private func searchElementWeatherCoordinate(for coordinate2D: CLLocationCoordinate2D) -> WeatherCoordinate? {
-//        print("🤡",FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first)
+        print("🤡",FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first)
         let request: NSFetchRequest<WeatherCoordinate> = WeatherCoordinate.fetchRequest()
         let predicate1 = NSPredicate(format: "lat == %@", NSNumber(value: coordinate2D.latitude))
         let predicate2 = NSPredicate(format: "lon == %@", NSNumber(value: coordinate2D.longitude))

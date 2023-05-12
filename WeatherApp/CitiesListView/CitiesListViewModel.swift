@@ -30,4 +30,16 @@ class CitiesListViewModel: ObservableObject {
             }
         }
     }
+    
+    func updateCitiesOrder() {
+        let updatedCoordinates = models.map({ CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longtitude) })
+        for updatedCoordinate in updatedCoordinates {
+            print(">>>> DELETE", updatedCoordinate)
+            persistence.deleteWeather(for: updatedCoordinate)
+        }
+        for updatedCoordinate in updatedCoordinates {
+            print(">>>> SAVE", updatedCoordinate)
+            persistence.saveNewCoordinate(for: updatedCoordinate)
+        }
+    }
 }
