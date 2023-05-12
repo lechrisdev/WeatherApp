@@ -11,10 +11,7 @@ import MapKit
 struct CityDetailView: View {
     
     @State var cityName: String = ""
-    var temperature: Int
-    let icon: Icon
-    var date: Date
-    var coordinate: CLLocationCoordinate2D
+    var weather: WeatherModel
     
     var onTapDelete: (CLLocationCoordinate2D) -> Void
     
@@ -42,15 +39,9 @@ struct CityDetailView: View {
         return nil
     }
     
-    init(coordinate: CLLocationCoordinate2D,
-         temperature: Int,
-         icon: Icon,
-         date: Date,
+    init(weather: WeatherModel,
          onTapDelete: @escaping (CLLocationCoordinate2D) -> Void) {
-        self.coordinate = coordinate
-        self.temperature = temperature
-        self.icon = icon
-        self.date = date
+        self.weather = weather
         self.onTapDelete = onTapDelete
     }
     
@@ -66,12 +57,13 @@ struct CityDetailView: View {
                         .multilineTextAlignment(.center)
                         .fontWeight(.semibold)
                         .frame(alignment: .center)
-                        .padding(.top, 7).padding(.horizontal, 20)
-                    
+                        .padding(.top, 7)
+                        .padding(.horizontal, 20)
+                    Spacer()
                     HStack {
                         
                         HStack(alignment: .top, spacing: 0) {
-                            Text(String(temperature))
+                            Text(String(weather.temperature))
                                 .font(.system(size: 60))
                             Text("°")
                                 .font(.system(size: 20))
@@ -81,47 +73,51 @@ struct CityDetailView: View {
                         
                         Spacer()
                         
-                        icon.image
+                        weather.icon.image
                             .padding(.trailing, 20)
                     }
-                    
-                    Text(date.toString(style: .amPm))
+                    Spacer()
+                    Text(Date().toString(style: .amPm))
                         .padding(.bottom, 7)
                         .font(.system(size: 12))
                         .foregroundColor(AppAssets.mediumGray.swiftUIColor)
                         .fontWeight(.semibold)
-                    
                 }
+                .frame(height: 160)
+                .roundedBackground()
                 
                 // удаление при нажатии на корзинку - кнопка
                 Button(
                     action: {
                         print("кнопка удаления работает")
                         // удаление из core data!!!
-                        onTapDelete(coordinate)
-                }, label: {
-                    AppAssets.trash.swiftUIImage
-                        .padding(.top, 12)
-                        .padding(.trailing, 12)
+                        onTapDelete(CLLocationCoordinate2D(latitude: weather.latitude,
+                                                           longitude: weather.longtitude))
+                        }, label: {
+                            AppAssets.trash.swiftUIImage
+                                .padding(.top, 12)
+                                .padding(.trailing, 12)
                 })
             }
         }
         .onAppear {
             Task {
-                if let cityName = await getCityName(coordinates: coordinate) {
+                if let cityName = await getCityName(
+                    coordinates: CLLocationCoordinate2D(latitude: weather.latitude,
+                                                        longitude: weather.longtitude)) {
                     self.cityName = cityName
                 }
             }
         }
-        .roundedBackground()
     }
 }
 
-struct CityDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        CityDetailView(coordinate: CLLocationCoordinate2D(latitude: 30, longitude: 30),
-                       temperature: 25,
-                       icon: .drizzleFreezing,
-                       date: Date(), onTapDelete: {_ in})
-    }
-}
+//struct CityDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CityDetailView(weather: <#T##WeatherModel#>,
+//                       onTapDelete: <#T##(CLLocationCoordinate2D) -> Void#>,
+//                       temperature: 25,
+//                       icon: .drizzleFreezing,
+//                       date: Date(), onTapDelete: {_ in})
+//    }
+//}

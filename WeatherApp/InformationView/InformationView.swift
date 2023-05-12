@@ -34,16 +34,11 @@ struct InformationView: View {
             print("Error: \(error.localizedDescription)")
             return nil
         }
-        
         return nil
     }
     
     init(model: WeatherModel) {
         self.model = model
-//        let date = Date(string: stringData)
-//        print(">>>>", date)
-//        print(">>>>", date.toString(style: .fullFormat))
-//        print(">>>>", date.toString(style: .amPm))
     }
     
     var body: some View {
@@ -55,7 +50,8 @@ struct InformationView: View {
                                        isLocal: model.isLocal,
                                        temperature: model.temperature)
                 let timezone = TimeZone(abbreviation: model.timezone)
-                DetailsView(time: Date().toString(style: .amPm, timezone: timezone),
+                DetailsView(time: Date().toString(style: .amPm,
+                                                  timezone: timezone),
                             uv: model.uvIndex,
                             rain: model.rainProbability,
                             aq: model.airQuality)
@@ -64,19 +60,16 @@ struct InformationView: View {
                               timezone: model.timezone)
                     .roundedBackground()
                     .padding(.top, 12)
-                
-                // СЮДА ВСТАВИТЬ ВЬЮ С ЕЖЕНЕДЕЛЬНОЙ ПОГОДОЙ
                 WeekForecast(days: model.dailyWeather)
                     .padding(.top, 12)
-                
-                MapView(lat: model.latitude, long: model.longtitude)
+                MapView(lat: model.latitude,
+                        long: model.longtitude)
                     .padding(.top, 12)
             }
-//            .padding(.horizontal, 24)
         }.onAppear {
             Task {
                 let coordinates = CLLocationCoordinate2D(latitude: model.latitude,
-                                                            longitude: model.longtitude)
+                                                         longitude: model.longtitude)
                 self.cityName = await getCityName(coordinates: coordinates) ?? ""
             }
         }
