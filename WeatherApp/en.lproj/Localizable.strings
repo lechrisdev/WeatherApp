@@ -18,3 +18,7 @@
 "THURSDAY" = "Thursday";
 "FRIDAY" = "Friday";
 "SATURDAY" = "Saturday";
+"ALERT.ATTENTION" = "Attention!";
+"ALERT.QUESTION" = "Are you sure you want to delete this city?";
+"ALERT.CANCEL" = "Cancel";
+"ALERT.DELETE" = "Delete";

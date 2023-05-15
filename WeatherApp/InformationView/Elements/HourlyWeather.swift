@@ -22,12 +22,12 @@ struct HourlyWeather: View {
     func isCurrentTime(time: String) -> Bool {
         var calendar = Calendar.current
         let timezone = TimeZone(abbreviation: timezone)
-        calendar.timeZone = timezone!
+        calendar.timeZone = timezone ?? .current
         var minutes = String(calendar.component(Calendar.Component.minute, from: Date()))
         if minutes.count == 1 {
             minutes = "0" + minutes
         }
-        let nowDate = calendar.dateComponents(in: timezone!, from: Date()).date!
+        let nowDate = calendar.dateComponents(in: timezone ?? .current, from: Date()).date!
         let nowDateString = nowDate.toString(style: .amPm, timezone: timezone)
         let nowDateStringZeroMinutes = nowDateString.replacingOccurrences(of: String(minutes), with: "00")
 

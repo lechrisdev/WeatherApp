@@ -24,6 +24,16 @@ public enum AppLocalization {
   public static let tuesday = AppLocalization.tr("Localizable", "TUESDAY", fallback: "Tuesday")
   /// Wednesday
   public static let wednesday = AppLocalization.tr("Localizable", "WEDNESDAY", fallback: "Wednesday")
+  public enum Alert {
+    /// Attention!
+    public static let attention = AppLocalization.tr("Localizable", "ALERT.ATTENTION", fallback: "Attention!")
+    /// Cancel
+    public static let cancel = AppLocalization.tr("Localizable", "ALERT.CANCEL", fallback: "Cancel")
+    /// Delete
+    public static let delete = AppLocalization.tr("Localizable", "ALERT.DELETE", fallback: "Delete")
+    /// Are you sure you want to delete this city?
+    public static let question = AppLocalization.tr("Localizable", "ALERT.QUESTION", fallback: "Are you sure you want to delete this city?")
+  }
   public enum Details {
     /// AQ
     public static let aq = AppLocalization.tr("Localizable", "DETAILS.AQ", fallback: "AQ")

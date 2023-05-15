@@ -12,6 +12,7 @@ class AppAssembly: Assembly {
     func assemble(container: Container) {
         
         // MARK: - Managers
+        
         container.register(Router.self, factory: { _ in
             Router()
         })
@@ -56,5 +57,9 @@ class AppAssembly: Assembly {
                                 repo: container.resolve(Repository.self)!
             )
         })
+        
+//        container.register(AlertView.self, factory: { _ in
+//            AlertView()
+//        })
     }
 }

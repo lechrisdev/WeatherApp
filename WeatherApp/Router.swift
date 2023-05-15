@@ -58,8 +58,22 @@ class Router {
         self.navigationController?.popViewController(animated: animated)
     }
     
+    func dismiss(animated: Bool = true) {
+        self.navigationController?.dismiss(animated: animated)
+    }
+    
     func backToRoot(animated: Bool = true) {
         self.navigationController?.popToRootViewController(animated: animated)
     }
+    
+    func showAlert(onDeleteTap: @escaping () -> Void) {
+        let vc = UIHostingController(rootView: AlertView(router: self, onDeleteTap: { onDeleteTap() }))
+        vc.view.backgroundColor = .clear
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+
+        self.navigationController?.present(vc, animated: true) //pushViewController(vc, animated: false)
+    }
+    
     
 }
