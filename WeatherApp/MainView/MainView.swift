@@ -21,51 +21,55 @@ struct MainView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                
-                SearchFieldView(onTapSearch: {
-                    print("кнопка поиска нажалась, переход на другой экран")
-                    router.showSearchScreen()
-                }, onTapList: {
-                    print("кнопка списка нажалась")
-                    router.showCitiesList(models: viewModel.models.filter({ $0.isLocal == false }) )
-                    
-                })
-                .padding(.horizontal, 24)
-            }
-                
-            TabView(content: {
-                
-                ForEach(Array(viewModel.models), id: \.self) { city in
-                    ScrollView {
-                        InformationView(model: city)
-                            .padding(.horizontal, 24)
-                    }
-                }
-            }).tabViewStyle(.page)
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
+        ZStack {
+            AppAssets.backgroundColor.swiftUIColor
                 .ignoresSafeArea()
-                .padding(.top, 24)
+            VStack {
+                HStack {
+                    
+                    SearchFieldView(onTapSearch: {
+                        print("кнопка поиска нажалась, переход на другой экран")
+                        router.showSearchScreen()
+                    }, onTapList: {
+                        print("кнопка списка нажалась")
+                        router.showCitiesList(models: viewModel.models.filter({ $0.isLocal == false }) )
+                        
+                    })
+                    .padding(.horizontal, 24)
+                }
+                    
+                TabView(content: {
+                    
+                    ForEach(Array(viewModel.models), id: \.self) { city in
+                        ScrollView {
+                            InformationView(model: city)
+                                .padding(.horizontal, 24)
+                        }
+                    }
+                }).tabViewStyle(.page)
+                    .indexViewStyle(.page(backgroundDisplayMode: .always))
+                    .ignoresSafeArea()
+                    .padding(.top, 24)
 
-        }
-        .navigationBarHidden(true)
-        .padding(.top, 12)
-        .onAppear {
-            print(">>>>>> locationManager.location.coordinate.latitude", locationManager.location.coordinate.latitude)
-            if locationManager.location.coordinate.latitude != 0.0 {
-                viewModel.updateWeather()
-                viewModel.loadLocalWeather(coordinates2D: locationManager.location.coordinate)
-            } else {
-                viewModel.updateWeather()
             }
+            .navigationBarHidden(true)
+            .padding(.top, 12)
+            .onAppear {
+                print(">>>>>> locationManager.location.coordinate.latitude", locationManager.location.coordinate.latitude)
+                if locationManager.location.coordinate.latitude != 0.0 {
+                    viewModel.updateWeather()
+                    viewModel.loadLocalWeather(coordinates2D: locationManager.location.coordinate)
+                } else {
+                    viewModel.updateWeather()
+                }
+            }
+    //        .onReceive(viewModel.locationManager.location.publisher, perform: { location in
+    //            print("SLOVO 2", location)
+    //        })
+            .onChange(of: locationManager.location) { location in
+                viewModel.loadLocalWeather(coordinates2D: location.coordinate)
+                print("SLOVO", location)
         }
-//        .onReceive(viewModel.locationManager.location.publisher, perform: { location in
-//            print("SLOVO 2", location)
-//        })
-        .onChange(of: locationManager.location) { location in
-            viewModel.loadLocalWeather(coordinates2D: location.coordinate)
-            print("SLOVO", location)
         }
     }
 }

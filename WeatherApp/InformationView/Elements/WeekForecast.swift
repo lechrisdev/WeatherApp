@@ -32,6 +32,7 @@ struct WeekForecast: View {
             }
         }
         .padding(.horizontal, 17)
+        .padding(.vertical, 15)
         .roundedBackground().frame(height: 250)
     }
 }

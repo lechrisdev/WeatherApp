@@ -20,44 +20,48 @@ struct SearchScreenView: View {
     
     var body: some View {
         
-        ScrollView {
-            VStack(alignment: .leading) {
-                HStack(spacing: 3.5) {
-                    
-                    TextFieldView(text: $viewModel.searchText)
-                        .autocorrectionDisabled(true)
-                    
-                    Spacer()
-                    
-                    Button {
-                        print("Нажата кнорка НАЗАД")
-                        router.back(animated: false)
-                    } label: {
-                        AppAssets.arrowBack.swiftUIImage.renderingMode(.template)
-                            .foregroundColor(AppAssets.mediumGray.swiftUIColor)
-                            .frame(width: 54, height: 44)
-                            .roundedBackground(15)
+        ZStack {
+            AppAssets.backgroundColor.swiftUIColor
+                .ignoresSafeArea()
+            ScrollView {
+                VStack(alignment: .leading) {
+                    HStack(spacing: 3.5) {
+                        
+                        TextFieldView(text: $viewModel.searchText)
+                            .autocorrectionDisabled(true)
+                        
+                        Spacer()
+                        
+                        Button {
+                            print("Нажата кнорка НАЗАД")
+                            router.back(animated: false)
+                        } label: {
+                            AppAssets.arrowBack.swiftUIImage.renderingMode(.template)
+                                .foregroundColor(AppAssets.mediumGray.swiftUIColor)
+                                .frame(width: 54, height: 44)
+                                .roundedBackground(15)
+                        }
                     }
+                    .frame(height:  44)
+                    
+                    CityCompletionView(cities: viewModel.cities, router: router)
+                        .padding(.top, 15)
                 }
-                .frame(height:  44)
-                
-                CityCompletionView(cities: viewModel.cities, router: router)
-                    .padding(.top, 15)
-            }
-            .padding(.top, 12)
-            .padding(.horizontal, 24)
-            .onChange(of: viewModel.searchText, perform: { text in // ПОДПИСАЛИСЬ НА ИЗМЕНЕНИЯ В ПЕРЕМЕННОЙ ТЕКСТ ПОЛЯ
-                if text.count >= 3 {
-                    print(text)
-                    // СНАЧАЛА ОСТАНОВКА ВСЕХ ЗАПУЩЕННЫХ ТАЙМЕРОВ, ПОТОМ ЗАПУСК НОВОГО
-                    viewModel.startTimer(withTimeInterval: 1) {
-                        print("Таймер 1 сек прошел")
-                        // Вызвать функцию поиска
-                        viewModel.search()
-                    }
+                .padding(.top, 12)
+                .padding(.horizontal, 24)
+                .onChange(of: viewModel.searchText, perform: { text in // ПОДПИСАЛИСЬ НА ИЗМЕНЕНИЯ В ПЕРЕМЕННОЙ ТЕКСТ ПОЛЯ
+                    if text.count >= 3 {
+                        print(text)
+                        // СНАЧАЛА ОСТАНОВКА ВСЕХ ЗАПУЩЕННЫХ ТАЙМЕРОВ, ПОТОМ ЗАПУСК НОВОГО
+                        viewModel.startTimer(withTimeInterval: 1) {
+                            print("Таймер 1 сек прошел")
+                            // Вызвать функцию поиска
+                            viewModel.search()
+                        }
 
-                }
-            })
+                    }
+                })
+            }
         }
     }
     

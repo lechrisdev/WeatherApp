@@ -26,56 +26,64 @@ struct WeatherView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            
-            HStack {
-                Button {
-                    print("Нажата кнопка НАЗАТТ")
-                    router.backToRoot()
-                } label: {
-                    AppAssets.arrowBack.swiftUIImage
-                        .frame(height: 44)
-                }
-
-                Spacer()
+        ZStack {
+            AppAssets.backgroundColor.swiftUIColor
+                .ignoresSafeArea()
+            VStack(alignment: .leading) {
                 
-                Button {
-                    print("Нажата кнорка добавить")
-                                                            // СОХРАНИТЬ В CORE DATA
-                    guard let latitude = viewModel.model?.latitude,
-                            let longitude = viewModel.model?.longtitude else { return }
-                    viewModel.saveToCoreData(lat: latitude, lon: longitude)
-                    withAnimation {
-                        isAdded.toggle()  //= true
+                HStack {
+                    Button {
+                        print("Нажата кнопка НАЗАТТ")
+                        router.backToRoot()
+                    } label: {
+                        AppAssets.arrowBack.swiftUIImage
+                            .renderingMode(.template)
+                            .foregroundColor(.primary)
+                            .frame(height: 44)
                     }
-                } label: {
-                    HStack(spacing: 8) {                    // КНОПКА МЕНЯЕТСЯ НА ЗЕЛЕНУЮ
-                        Text(isAdded ? "Added to list" : "Add to list")
-                            .foregroundColor( isAdded ? Color.white : Color.black)
-                        if isAdded {
-                            AppAssets.done.swiftUIImage
-                        } else {
-                            AppAssets.add.swiftUIImage
-                        }
-                    }
-                    .padding(.all, 14)
-                } .roundedBackground(bgColor: isAdded ? AppAssets.green.swiftUIColor : AppAssets.lightGray.swiftUIColor)
+
+                    Spacer()
                     
-            }
-            .frame(height: 44)
-            
-            ScrollView {
-                if let model = viewModel.model {
-                    InformationView(model: model)
+                    Button {
+                        print("Нажата кнорка добавить")
+                                                                // СОХРАНИТЬ В CORE DATA
+                        guard let latitude = viewModel.model?.latitude,
+                                let longitude = viewModel.model?.longtitude else { return }
+                        viewModel.saveToCoreData(lat: latitude, lon: longitude)
+                        withAnimation {
+                            isAdded.toggle()  //= true
+                        }
+                    } label: {
+                        HStack(spacing: 8) {                    // КНОПКА МЕНЯЕТСЯ НА ЗЕЛЕНУЮ
+                            Text(isAdded ? "Added to list" : "Add to list")
+                                .foregroundColor( isAdded ? Color.white : .primary)
+                            if isAdded {
+                                AppAssets.done.swiftUIImage
+                            } else {
+                                AppAssets.add.swiftUIImage
+                                    .renderingMode(.template)
+                                    .foregroundColor(.primary)
+                            }
+                        }
+                        .padding(.all, 14)
+                    } .roundedBackground(bgColor: isAdded ? AppAssets.green.swiftUIColor : AppAssets.lightGray.swiftUIColor)
+                        
                 }
+                .frame(height: 44)
+                
+                ScrollView {
+                    if let model = viewModel.model {
+                        InformationView(model: model)
+                    }
+                }
+                .padding(.top, 24)
+                
             }
-            .padding(.top, 24)
-            
+            .padding(.top, 12)
+            .padding(.horizontal, 24)
+            .onAppear {
+                viewModel.getWeather(lon: lon, lat: lat)
         }
-        .padding(.top, 12)
-        .padding(.horizontal, 24)
-        .onAppear {
-            viewModel.getWeather(lon: lon, lat: lat)
         }
     }
 }

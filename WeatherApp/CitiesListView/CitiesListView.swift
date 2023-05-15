@@ -59,45 +59,54 @@ struct CitiesListView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            Button {
-                print("NAZAD NA WEATHER VIEW")
-                router.back()
-            } label: {
-                AppAssets.arrowBack.swiftUIImage.frame(height: 44)
-            }.padding(.horizontal, 24)
-            
-            ScrollView {
-                VStack(spacing: 16) {
-                    
-                    ForEach(Array(viewModel.models.enumerated()), id: \.element) { index, weather in
-                        CityDetailView(weather: weather,
-                                       onTapDelete: { coordinate in
-                                            viewModel.deleteCity(coordinate: coordinate)
-                        })
-                        .onDrag {
-                            self.draggedCity = weather
-                            return NSItemProvider()
+        ZStack {
+            AppAssets.backgroundColor.swiftUIColor
+                .ignoresSafeArea()
+            VStack(alignment: .leading) {
+                
+                Button {
+                    print("NAZAD NA WEATHER VIEW")
+                    router.back()
+                } label: {
+                    AppAssets.arrowBack.swiftUIImage
+                        .renderingMode(.template)
+                        .foregroundColor(.primary)
+                        .frame(height: 44)
+                }
+                .padding(.horizontal, 24)
+                
+                ScrollView {
+                    VStack(spacing: 16) {
+                        
+                        ForEach(Array(viewModel.models.enumerated()), id: \.element) { index, weather in
+                            CityDetailView(weather: weather,
+                                           onTapDelete: { coordinate in
+                                router.showAlert(onDeleteTap: { viewModel.deleteCity(
+                                                                    coordinate: coordinate) })
+                            })
+                            .onDrag {
+                                self.draggedCity = weather
+                                return NSItemProvider()
+                            }
+                            .onDrop(of: [.text],
+                                    delegate: DropViewDelegate(destinationItem: weather,
+                                                               cities: $viewModel.models,
+                                                               draggedItem: $draggedCity, onDropped: {
+                                viewModel.updateCitiesOrder()
+                            })
+                            )
                         }
-                        .onDrop(of: [.text],
-                                delegate: DropViewDelegate(destinationItem: weather,
-                                                           cities: $viewModel.models,
-                                                           draggedItem: $draggedCity, onDropped: {
-                            viewModel.updateCitiesOrder()
-                        })
-                        )
                     }
                 }
+                .padding(.top, 24)
+                .padding(.horizontal, 24)
+                .onChange(of: viewModel.models,
+                          perform: { models in
+    //
+                })
             }
-            .padding(.top, 24)
-            .padding(.horizontal, 24)
-            .onChange(of: viewModel.models,
-                      perform: { models in
-//
-            })
+            .padding(.top, 12)
         }
-        .padding(.top, 12)
     }
 }
 

@@ -18,3 +18,8 @@
 "THURSDAY" = "Четвер";
 "FRIDAY" = "Пʼятниця";
 "SATURDAY" = "Субота";
+"ALERT.ATTENTION" = "Увага!";
+"ALERT.QUESTION" = "Ви впевнені, що хочете видалили це місто?";
+"ALERT.CANCEL" = "Скасувати";
+"ALERT.DELETE" = "Видалити";
+

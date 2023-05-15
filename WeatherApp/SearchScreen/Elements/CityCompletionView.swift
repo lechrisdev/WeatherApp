@@ -56,7 +56,7 @@ struct CityCell: View {     // (1) ЯЧЕЙКА = ПРЯМОУГОЛЬНИК И 
                     Text("\(model.country))")
                 }
             }
-            .foregroundColor(.black)
+            .foregroundColor(AppAssets.darkGray.swiftUIColor)
             .font(.system(size: 10))
             .padding(.vertical, 8)
             .padding(.horizontal, 18)
